@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>e-village TATEISHI | Tokyo Apartment Hotel Near Asakusa & Skytree</title>
+<meta name="description" content="Stay at e-village TATEISHI, a newly built apartment hotel just 5 minutes from Keisei Tateishi Station. Easy access to Asakusa, Tokyo Skytree, Narita Airport and Haneda Airport. Perfect for families and groups." />
+<meta property="og:title" content="e-village TATEISHI | Tokyo Apartment Hotel Near Asakusa & Skytree" />
+<meta property="og:description" content="5 unique apartments, 5 minutes from Keisei Tateishi Station. Skytree 10 min, Asakusa 25 min, Narita 50 min, Haneda 60 min. Book on Airbnb." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="access-map.jpg" />
+<meta name="robots" content="index, follow" />
+
+<!-- =========================================================
+  EDIT GUIDE（編集ガイド）
+  1) 部屋情報   : ページ末尾の ROOMS 配列
+  2) 写真       : images/rooms/ と images/attractions/ の画像ファイルを差し替えるだけで更新
+  3) 地図       : 下のiframeはGoogleビジネスプロフィール登録後、
+                  公式の埋め込みコードに差し替え推奨
+  4) アクセス図 : access-map.webp / access-map.jpg を同じフォルダに置く
+========================================================= -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:      #1b2a4a;
+    --ink-2:    #243760;
+    --ink-soft: #46506a;
+    --washi:    #f3eee2;
+    --surface:  #fdfaf3;
+    --shu:      #c24a36;   /* vermilion CTA */
+    --shu-dark: #a53a29;
+    --gold:     #b08d57;
+    --line:     #e6dcc8;
+    --star:     #d4a23a;
+    --display: "Fraunces", serif;
+    --sans: "Zen Kaku Gothic New", system-ui, sans-serif;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ font-family:var(--sans); color:var(--ink-soft); background:var(--washi);
+    line-height:1.75; -webkit-font-smoothing:antialiased; overflow-wrap:break-word; }
+  body:lang(en){ word-break:normal; }
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+  .wrap{ width:min(1060px,100%); margin-inline:auto; padding-inline:20px; }
+  .jp{ font-size:.78em; color:var(--gold); letter-spacing:.04em; }
+
+  /* ---------- header ---------- */
+  header.site{ position:sticky; top:0; z-index:40; background:rgba(243,238,226,.9); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+  .site .wrap{ display:flex; align-items:center; justify-content:space-between; height:58px; gap:10px; }
+  .brand{ font-family:var(--display); font-weight:700; color:var(--ink); font-size:1.02rem; letter-spacing:.01em; line-height:1.15; white-space:nowrap; }
+  .brand small{ display:block; font-family:var(--sans); font-weight:500; font-size:.55rem; letter-spacing:.3em; color:var(--gold); text-transform:uppercase; }
+  .hdr-cta{ font-size:.74rem; font-weight:700; letter-spacing:.04em; color:#fff; background:var(--shu); border-radius:999px; padding:.5em 1.1em; white-space:nowrap; transition:.2s; }
+  .hdr-cta:hover{ background:var(--shu-dark); }
+
+  /* ---------- hero ---------- */
+  .hero{ background:linear-gradient(165deg,#16233f 0%,#22335a 55%,#2c3f6b 100%); color:#fff; position:relative; overflow:hidden; }
+  .hero::after{ content:""; position:absolute; right:-150px; top:-130px; width:400px; height:400px; border-radius:50%;
+    background:radial-gradient(circle at 38% 38%, rgba(212,162,58,.3), rgba(212,162,58,0) 62%); pointer-events:none; }
+  .hero .wrap{ padding-block:62px 48px; position:relative; }
+  .hero .eyebrow{ font-size:.66rem; letter-spacing:.38em; text-transform:uppercase; color:var(--star); margin-bottom:18px; }
+  .hero h1{ font-family:var(--display); font-weight:600; color:#fff; font-size:clamp(2.1rem,7.4vw,3.6rem); line-height:1.14; letter-spacing:-.01em; }
+  .hero h1 em{ font-style:italic; color:var(--star); }
+  .hero .sub{ margin-top:16px; font-size:clamp(.95rem,2.8vw,1.12rem); color:#e6e2d6; font-weight:500; }
+  .hero .sub-jp{ margin-top:6px; font-size:.8rem; color:#9aa0b3; }
+  .dest-chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top:24px; }
+  .dest-chips span{ font-size:.74rem; letter-spacing:.03em; color:#fff; border:1px solid rgba(255,255,255,.28); border-radius:999px; padding:.36em .95em; background:rgba(255,255,255,.05); }
+  .hero-ctas{ display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
+  .btn{ display:inline-flex; align-items:center; justify-content:center; gap:.5em; font-weight:700; font-size:.92rem;
+    padding:.85em 1.5em; border-radius:10px; transition:.2s; letter-spacing:.02em; }
+  .btn-primary{ background:var(--shu); color:#fff; }
+  .btn-primary:hover{ background:var(--shu-dark); }
+  .btn-ghost{ border:1px solid rgba(255,255,255,.45); color:#fff; }
+  .btn-ghost:hover{ background:rgba(255,255,255,.1); }
+  .btn .arrow{ transition:transform .2s; }
+  .btn:hover .arrow{ transform:translateX(3px); }
+
+  /* ---------- sections ---------- */
+  .section{ padding-block:56px; }
+  .sec-head{ margin-bottom:26px; }
+  .sec-head .kicker{ font-size:.64rem; letter-spacing:.32em; text-transform:uppercase; color:var(--gold); }
+  .sec-head h2{ font-family:var(--display); color:var(--ink); font-weight:600; font-size:clamp(1.5rem,4.6vw,2.1rem); line-height:1.25; margin-top:6px; }
+  .sec-head .jp-sub{ font-size:.8rem; color:var(--gold); margin-top:4px; }
+  .lead-note{ max-width:64ch; font-size:.95rem; margin-top:10px; }
+
+  /* ---------- why stay here (access) ---------- */
+  .why{ background:var(--surface); border-block:1px solid var(--line); }
+  .why-grid{ display:grid; grid-template-columns:1fr 1fr; gap:34px; align-items:start; }
+  @media (max-width:820px){ .why-grid{ grid-template-columns:1fr; gap:24px; } }
+  .access-figure{ border:1px solid var(--line); border-radius:16px; overflow:hidden; background:#fff; box-shadow:0 2px 14px rgba(27,42,74,.07); }
+  .access-figure img{ width:100%; height:auto; }
+  .access-figure figcaption{ font-size:.72rem; color:var(--ink-soft); padding:10px 14px; border-top:1px solid var(--line); }
+  .time-list{ display:flex; flex-direction:column; gap:2px; }
+  .time-list .row{ display:flex; align-items:center; gap:12px; padding:11px 4px; border-bottom:1px dotted var(--line); }
+  .time-list .ico{ font-size:1.15rem; width:1.6em; text-align:center; flex:none; }
+  .time-list .to{ color:var(--ink); font-weight:700; font-size:.95rem; }
+  .time-list .via{ display:block; font-weight:400; font-size:.72rem; color:var(--ink-soft); }
+  .time-list .t{ margin-left:auto; font-family:var(--display); font-weight:600; color:var(--shu); font-size:1.15rem; white-space:nowrap; }
+  .time-list .t small{ font-size:.62em; color:var(--gold); }
+
+  /* ---------- find us / map ---------- */
+  .map-grid{ display:grid; grid-template-columns:1.2fr .8fr; gap:30px; align-items:stretch; }
+  @media (max-width:820px){ .map-grid{ grid-template-columns:1fr; } }
+  .map-embed{ border-radius:16px; overflow:hidden; border:1px solid var(--line); min-height:320px; background:#e3dccd; }
+  .map-embed iframe{ width:100%; height:100%; min-height:320px; border:0; display:block; }
+  .map-side{ display:flex; flex-direction:column; gap:14px; justify-content:center; }
+  .map-side .addr{ font-size:.92rem; }
+  .map-side .addr b{ color:var(--ink); display:block; font-size:1.02rem; margin-bottom:2px; }
+  .btn-map{ background:var(--ink); color:#fff; }
+  .btn-map:hover{ background:var(--ink-2); }
+
+  /* ---------- attractions ---------- */
+  .spots{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  @media (max-width:900px){ .spots{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .spots{ grid-template-columns:1fr 1fr; gap:14px; } }
+  .spot{ background:var(--surface); border:1px solid var(--line); border-radius:14px; overflow:hidden; display:flex; flex-direction:column; }
+  .spot .ph{ aspect-ratio:4/3; background-size:cover; background-position:center; display:flex; align-items:center; justify-content:center; font-size:2.4rem; position:relative; }
+  .spot .t-badge{ position:absolute; left:10px; bottom:10px; background:rgba(27,42,74,.92); color:#fff;
+    font-size:.7rem; font-weight:700; letter-spacing:.03em; padding:.3em .8em; border-radius:999px; }
+  .spot .b{ padding:13px 15px 16px; }
+  .spot h3{ font-family:var(--display); font-weight:600; color:var(--ink); font-size:1rem; line-height:1.3; }
+  .spot p{ font-size:.76rem; margin-top:6px; line-height:1.6; }
+  @media (max-width:560px){ .spot p{ display:none; } .spot h3{ font-size:.9rem; } }
+
+  /* ---------- rooms ---------- */
+  .rooms{ display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
+  @media (max-width:760px){ .rooms{ grid-template-columns:1fr; gap:20px; } }
+  .card{ background:var(--surface); border:1px solid var(--line); border-radius:14px; overflow:hidden;
+    display:flex; flex-direction:column; box-shadow:0 1px 0 rgba(27,42,74,.04);
+    opacity:0; transform:translateY(14px); transition:opacity .65s ease, transform .65s ease; }
+  .card.in{ opacity:1; transform:none; }
+  .card .photo{ aspect-ratio:4/3; background-size:cover; background-position:center; position:relative; background-color:#2a3c66; }
+  .card .photo.ph{ background:linear-gradient(135deg,#243760,#3a4d78); display:flex; align-items:center; justify-content:center; }
+  .card .photo.ph span{ font-family:var(--display); color:rgba(255,255,255,.55); font-size:.8rem; letter-spacing:.2em; }
+  .card .code{ position:absolute; left:0; top:14px; background:var(--shu); color:#fff;
+    font-weight:700; font-size:.72rem; letter-spacing:.2em; padding:.4em .9em .4em 1em; border-radius:0 6px 6px 0; }
+  .card .badge{ position:absolute; right:12px; top:12px; background:rgba(27,42,74,.9); color:#fff;
+    font-size:.64rem; letter-spacing:.04em; padding:.34em .8em; border-radius:999px; }
+  .card .body{ padding:18px 20px 22px; display:flex; flex-direction:column; flex:1; }
+  .card h3{ font-family:var(--display); color:var(--ink); font-weight:600; font-size:1.18rem; line-height:1.3; }
+  .card .desc{ font-size:.84rem; margin-top:8px; }
+  .rating{ display:flex; align-items:center; gap:6px; margin-top:10px; font-size:.84rem; color:var(--ink); }
+  .rating .star{ color:var(--star); }
+  .rating .n{ color:var(--ink-soft); }
+  .meta{ display:flex; flex-wrap:wrap; gap:4px 14px; margin-top:8px; font-size:.8rem; }
+  .meta b{ color:var(--ink); }
+  .card .cta{ margin-top:auto; padding-top:18px; }
+  .btn-book{ width:100%; background:var(--shu); color:#fff; }
+  .btn-book:hover{ background:var(--shu-dark); }
+
+  .group-note{ margin-top:30px; background:var(--ink); color:#dcd8cc; border-radius:14px; padding:24px 26px; }
+  .group-note h3{ font-family:var(--display); color:#fff; font-size:1.1rem; margin-bottom:6px; }
+  .group-note p{ font-size:.88rem; }
+  .group-note b{ color:var(--star); }
+
+  /* ---------- FAQ ---------- */
+  .faq{ max-width:760px; }
+  details{ border-bottom:1px solid var(--line); }
+  summary{ list-style:none; cursor:pointer; display:flex; align-items:center; gap:12px;
+    padding:16px 4px; font-weight:700; color:var(--ink); font-size:.96rem; }
+  summary::-webkit-details-marker{ display:none; }
+  summary::after{ content:"+"; margin-left:auto; font-family:var(--display); color:var(--gold); font-size:1.3rem; transition:transform .2s; }
+  details[open] summary::after{ transform:rotate(45deg); }
+  .faq .a{ padding:0 4px 18px; font-size:.9rem; max-width:60ch; }
+
+  /* ---------- footer & sticky bar ---------- */
+  footer.site{ background:var(--ink); color:#c2c6d4; padding-block:36px 110px; margin-top:14px; }
+  @media (min-width:761px){ footer.site{ padding-bottom:36px; } }
+  footer .wrap{ display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:flex-start; }
+  footer .brand{ color:#fff; }
+  footer .brand small{ color:var(--gold); }
+  footer .fnote{ font-size:.72rem; color:#9aa0b3; max-width:54ch; line-height:1.7; }
+
+  .sticky-bar{ position:fixed; left:0; right:0; bottom:0; z-index:50; display:none;
+    gap:10px; padding:10px 14px calc(10px + env(safe-area-inset-bottom)); background:rgba(243,238,226,.94);
+    backdrop-filter:blur(10px); border-top:1px solid var(--line); }
+  .sticky-bar .btn{ flex:1; font-size:.86rem; padding:.8em .6em; }
+  @media (max-width:760px){ .sticky-bar{ display:flex; } }
+
+  @media (prefers-reduced-motion: reduce){
+    .card{ opacity:1; transform:none; transition:none; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+
+<!-- SEO: LodgingBusiness structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "name": "e-village TATEISHI",
+  "description": "Newly built apartment hotel with 5 uniquely designed rooms, 5 minutes from Keisei Tateishi Station, Tokyo. Easy access to Asakusa, Tokyo Skytree, Shibamata, Narita and Haneda Airports.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Katsushika City",
+    "addressRegion": "Tokyo",
+    "addressCountry": "JP"
+  },
+  "hasMap": "https://maps.app.goo.gl/SifWLT97SxibungQ6",
+  "numberOfRooms": 5,
+  "petsAllowed": false,
+  "amenityFeature": [
+    {"@type":"LocationFeatureSpecification","name":"Free Wi-Fi","value":true},
+    {"@type":"LocationFeatureSpecification","name":"Full kitchen","value":true},
+    {"@type":"LocationFeatureSpecification","name":"Washing machine","value":true},
+    {"@type":"LocationFeatureSpecification","name":"Self check-in","value":true},
+    {"@type":"LocationFeatureSpecification","name":"Luggage storage","value":true}
+  ]
+}
+</script>
+
+<!-- AEO: FAQ structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How far is Narita Airport from e-village TATEISHI?",
+      "acceptedAnswer": {"@type":"Answer","text":"About 50 minutes by train. Take the Keisei Sky-Liner or Keisei Sky Access Line to Aoto Station, transfer to the Keisei Oshiage Line (local), and get off at Keisei Tateishi Station — one stop from Aoto. The hotel is a 5-minute walk from the station."}
+    },
+    {
+      "@type": "Question",
+      "name": "How far is Haneda Airport from e-village TATEISHI?",
+      "acceptedAnswer": {"@type":"Answer","text":"About 60 minutes by train. The Airport Limited Express runs through to the Keisei Oshiage Line, so you can reach Keisei Tateishi Station with minimal transfers."}
+    },
+    {
+      "@type": "Question",
+      "name": "Is the apartment suitable for families?",
+      "acceptedAnswer": {"@type":"Answer","text":"Yes. Each apartment sleeps up to 5 guests with 2 double beds plus extra beds, a full kitchen, a washing machine, and a separate bath and toilet. Beds are low Japanese-style beds, safe for small children. EVT101 even has a playful loft with a starry ceiling that kids love."}
+    },
+    {
+      "@type": "Question",
+      "name": "Is there free Wi-Fi?",
+      "acceptedAnswer": {"@type":"Answer","text":"Yes. All rooms have free high-speed fiber-optic Wi-Fi, plus a Google TV with Netflix and YouTube."}
+    },
+    {
+      "@type": "Question",
+      "name": "How do I check in?",
+      "acceptedAnswer": {"@type":"Answer","text":"Self check-in from 4:00 PM. After booking on Airbnb, you will receive entry instructions. Check-out is by 10:00 AM. Free luggage storage is available before check-in and after check-out."}
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand">e-village TATEISHI<small>Tokyo Apartment Hotel</small></div>
+    <a class="hdr-cta" href="#rooms">Book on Airbnb</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Tokyo Sightseeing Base · Katsushika</p>
+    <h1>Stay Local,<br><em>Explore Tokyo.</em></h1>
+    <p class="sub">5 Unique Apartments, 5 Minutes from Keisei Tateishi Station</p>
+    <p class="sub-jp">京成立石駅 徒歩5分・2024年新築のアパートメントホテル</p>
+    <div class="dest-chips">
+      <span>🗼 Tokyo Skytree</span><span>🏮 Asakusa</span><span>🎎 Shibamata</span>
+      <span>🛍 Ginza</span><span>🌃 Shibuya</span><span>✈ Narita</span><span>✈ Haneda</span>
+    </div>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="#rooms">See the 5 Rooms <span class="arrow">→</span></a>
+      <a class="btn btn-ghost" href="https://maps.app.goo.gl/SifWLT97SxibungQ6" target="_blank" rel="noopener">📍 View on Google Maps</a>
+    </div>
+  </div>
+</section>
+
+<main>
+  <!-- ============ WHY STAY HERE ============ -->
+  <section class="section why" id="access">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker">Access</span>
+        <h2>Why Stay Here?</h2>
+        <p class="jp-sub">主要スポットへ、乗り換えほぼなしで。</p>
+        <p class="lead-note">One quiet local station — direct lines to both airports, Skytree and Asakusa. You come home to a calm neighborhood, and the whole city stays within easy reach.</p>
+      </div>
+      <div class="why-grid">
+        <figure class="access-figure">
+          <picture>
+            <source srcset="access-map.webp" type="image/webp">
+            <img src="access-map.jpg" alt="Access map of e-village TATEISHI: Narita Airport 50 min via Keisei Sky-Liner, Haneda Airport 60 min via Airport Limited Express, Tokyo Skytree 10 min, Asakusa 25 min, Shibamata 15 min, Ginza 30 min, Shibuya 50 min from Keisei Tateishi Station" loading="lazy" width="1440" height="2037">
+          </picture>
+          <figcaption>Train times from Keisei Tateishi Station. Scan the QR code for the transit route planner.</figcaption>
+        </figure>
+        <div class="time-list">
+          <div class="row"><span class="ico">✈</span><span class="to">Narita Airport<span class="via">Keisei Sky-Liner / Sky Access Line</span></span><span class="t">50<small> min</small></span></div>
+          <div class="row"><span class="ico">✈</span><span class="to">Haneda Airport<span class="via">Airport Limited Express — direct</span></span><span class="t">60<small> min</small></span></div>
+          <div class="row"><span class="ico">🗼</span><span class="to">Tokyo Skytree<span class="via">Oshiage Station — direct</span></span><span class="t">10<small> min</small></span></div>
+          <div class="row"><span class="ico">🎎</span><span class="to">Shibamata Taishakuten<span class="via">via Takasago</span></span><span class="t">15<small> min</small></span></div>
+          <div class="row"><span class="ico">🏮</span><span class="to">Asakusa (Kaminari-mon)<span class="via">direct</span></span><span class="t">25<small> min</small></span></div>
+          <div class="row"><span class="ico">🛍</span><span class="to">Ginza<span class="via">Higashi-Ginza — direct</span></span><span class="t">30<small> min</small></span></div>
+          <div class="row"><span class="ico">🌃</span><span class="to">Shibuya<span class="via">via Oshiage</span></span><span class="t">50<small> min</small></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FIND US ============ -->
+  <section class="section" id="map">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker">Location</span>
+        <h2>Find Us</h2>
+        <p class="jp-sub">京成立石駅から徒歩5分</p>
+        <p class="lead-note">5-minute walk from Keisei Tateishi Station — a friendly local neighborhood with supermarkets, convenience stores, bakeries and izakaya along the way.</p>
+      </div>
+      <div class="map-grid">
+        <div class="map-embed">
+          <!-- TODO: Googleビジネスプロフィール登録後、公式の埋め込みコードに差し替え推奨 -->
+          <iframe src="https://maps.google.com/maps?q=e-village%20TATEISHI%20Katsushika%20Tokyo&z=15&output=embed"
+                  loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                  title="Map of e-village TATEISHI, Katsushika, Tokyo"></iframe>
+        </div>
+        <div class="map-side">
+          <p class="addr"><b>e-village TATEISHI</b>Katsushika City, Tokyo, Japan<br><span class="jp">東京都葛飾区（京成立石駅 徒歩5分）</span></p>
+          <a class="btn btn-map" href="https://maps.app.goo.gl/SifWLT97SxibungQ6" target="_blank" rel="noopener">📍 View on Google Maps <span class="arrow">→</span></a>
+          <p style="font-size:.78rem;">Tip: open the map and tap “Directions” for a walking route from the station.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ATTRACTIONS ============ -->
+  <section class="section why" id="attractions">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker">Around Tokyo</span>
+        <h2>Your Sightseeing Base</h2>
+        <p class="jp-sub">ここを拠点に、東京をめぐる。</p>
+      </div>
+      <div class="spots" id="spotGrid"><!-- generated --></div>
+    </div>
+  </section>
+
+  <!-- ============ ROOMS ============ -->
+  <section class="section" id="rooms">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker">The Rooms</span>
+        <h2>Five Rooms, Five Designs</h2>
+        <p class="jp-sub">デザインの異なる5室から選べます。</p>
+        <p class="lead-note">All five apartments share the same comfort — up to 5 guests, full kitchen, washing machine, separate bath & toilet, fast Wi-Fi, self check-in. Each has its own design story. Pick yours and book on Airbnb.</p>
+      </div>
+      <div class="rooms" id="roomGrid"><!-- generated --></div>
+
+      <div class="group-note">
+        <h3>Traveling as a big group?</h3>
+        <p>All five rooms are in the <b>same building</b> — book two or more rooms together if they're available. On Airbnb, search the room code (e.g. <b>EVT201</b>, <b>EVT302</b>) to jump straight to each room.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker">FAQ</span>
+        <h2>Good to Know</h2>
+        <p class="jp-sub">よくあるご質問</p>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>How far is Narita Airport?</summary>
+          <p class="a">About <b>50 minutes</b> by train. Take the Keisei Sky-Liner or Sky Access Line to <b>Aoto Station</b>, transfer to the Keisei Oshiage Line (local), and Keisei Tateishi is just one stop away. From the station it's a 5-minute walk.</p>
+        </details>
+        <details>
+          <summary>How far is Haneda Airport?</summary>
+          <p class="a">About <b>60 minutes</b>. The Airport Limited Express runs through to the Keisei Oshiage Line, so you can reach Keisei Tateishi with minimal transfers.</p>
+        </details>
+        <details>
+          <summary>Is the apartment suitable for families?</summary>
+          <p class="a">Yes — each room sleeps up to <b>5 guests</b> with 2 double beds plus extra beds, a full kitchen and a washing machine. Beds are low Japanese-style beds, safe for small children. Kids especially love the loft and starry ceiling in <b>EVT101</b>.</p>
+        </details>
+        <details>
+          <summary>Is there free Wi-Fi?</summary>
+          <p class="a">Yes, all rooms have <b>free high-speed fiber Wi-Fi</b>, plus a Google TV with Netflix and YouTube.</p>
+        </details>
+        <details>
+          <summary>How do I check in?</summary>
+          <p class="a"><b>Self check-in from 4:00 PM</b> — entry instructions arrive after you book on Airbnb. Check-out is by 10:00 AM. Free luggage storage is available before check-in and after check-out.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="brand">e-village TATEISHI<small>Tokyo Apartment Hotel</small></div>
+    <p class="fnote">
+      5 minutes from Keisei Tateishi Station, Katsushika City, Tokyo. Newly built in 2024.<br>
+      Bookings, availability and prices: see each room's Airbnb page.<br>
+      Licensed under the Hotel Business Act (Katsushika City Public Health Center).<br>
+      <span class="jp">旅館業法許可・葛飾区保健所</span><br>
+      Photos are loaded from local files in the images folder. Replace the image files to update the site.
+    </p>
+  </div>
+</footer>
+
+<!-- mobile sticky CTA -->
+<div class="sticky-bar">
+  <a class="btn btn-primary" href="#rooms">Book on Airbnb</a>
+  <a class="btn btn-map" href="https://maps.app.goo.gl/SifWLT97SxibungQ6" target="_blank" rel="noopener">📍 Map</a>
+</div>
+
+<script>
+/* =========================================================
+   ▼ 写真の差し替え方法 ▼
+   HTMLを編集しなくても、同じファイル名の画像に置き換えるだけで更新されます。
+
+   観光地写真：images/attractions/
+   - skytree.jpg
+   - asakusa.jpg
+   - shibamata.jpg
+   - ginza.jpg
+   - shibuya.jpg
+
+   部屋写真：images/rooms/
+   - evt101.jpg
+   - evt201.jpg
+   - evt202.jpg
+   - evt301.jpg
+   - evt302.jpg
+
+   推奨サイズ：横1200px以上、比率4:3〜3:2、jpg形式
+========================================================= */
+const ATTRACTIONS = [
+  { name:"Tokyo Skytree", time:"10 min", icon:"🗼",
+    photo:"images/attractions/skytree.jpg",
+    desc:"Japan's tallest tower in Sumida, with sweeping city views and the Solamachi shopping complex at its base." },
+  { name:"Asakusa", time:"25 min", icon:"🏮",
+    photo:"images/attractions/asakusa.jpg",
+    desc:"Senso-ji Temple, the Kaminari-mon gate and old-Tokyo streets full of food stalls and craft shops." },
+  { name:"Shibamata Taishakuten", time:"15 min", icon:"🎎",
+    photo:"images/attractions/shibamata.jpg",
+    desc:"A nostalgic temple town in Katsushika, loved for beautiful wood carvings and a retro shopping street." },
+  { name:"Ginza", time:"30 min", icon:"🛍",
+    photo:"images/attractions/ginza.jpg",
+    desc:"Tokyo's elegant shopping district, known for department stores, galleries, restaurants and the Wako clock tower." },
+  { name:"Shibuya", time:"50 min", icon:"🌃",
+    photo:"images/attractions/shibuya.jpg",
+    desc:"The famous scramble crossing, nightlife and youth culture at the heart of modern Tokyo." }
+];
+
+/* =========================================================
+   ▼ ROOMS — 部屋写真もローカルファイルから読み込み ▼
+   写真を変える場合は images/rooms/ の同名ファイルを差し替えてください。
+========================================================= */
+const ROOMS = [
+  {
+    code:"EVT101", name:"Loft & Starry Sky",
+    rating:4.97, reviews:77, badge:"Top 5% of homes",
+    guests:5, beds:"4 beds (2 loft)", size:"39 m²",
+    desc:"A playful loft reached by a green ladder, a hammock chair, and a ceiling that fills with stars when the lights go out. Kids' favorite.",
+    photo:"images/rooms/evt101.jpg",
+    url:"https://www.airbnb.jp/rooms/1333227498320991614"
+  },
+  {
+    code:"EVT201", name:"Choju-Giga Room",
+    rating:4.98, reviews:46, badge:"",
+    guests:5, beds:"3 beds", size:"36 m²",
+    desc:"Dine beneath Japan's famous 12th-century 'frolicking animals' scroll art. A bright, calm 1LDK with a counter-style dining table.",
+    photo:"images/rooms/evt201.jpg",
+    url:"https://www.airbnb.jp/rooms/1360496370015696566"
+  },
+  {
+    code:"EVT202", name:"Botanical Dining Room",
+    rating:4.93, reviews:56, badge:"Guest Favorite",
+    guests:5, beds:"3 beds", size:"36 m²",
+    desc:"A bright 2nd-floor apartment with botanical wallpaper inspired by museum plant specimens. Great for families, business trips and longer stays.",
+    photo:"images/rooms/evt202.jpg",
+    url:"https://www.airbnb.jp/rooms/1361139822645478998"
+  },
+  {
+    code:"EVT301", name:"Blue Design Room",
+    rating:4.95, reviews:38, badge:"",
+    guests:5, beds:"3 beds", size:"36 m²",
+    desc:"An artistic deep-blue dining space with a resort-like calm. Spacious 1LDK ideal for families and longer stays.",
+    photo:"images/rooms/evt301.jpg",
+    url:"https://www.airbnb.jp/rooms/1361144424351234078"
+  },
+  {
+    code:"EVT302", name:"Marimekko Room",
+    rating:4.94, reviews:47, badge:"",
+    guests:5, beds:"3 beds", size:"",
+    desc:"Bright Nordic interior with cheerful Marimekko wallpaper — warm, cozy and quietly tucked on the 3rd floor.",
+    photo:"images/rooms/evt302.jpg",
+    url:"https://www.airbnb.jp/rooms/1361146597284334432"
+  }
+];
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* attractions */
+document.getElementById("spotGrid").innerHTML = ATTRACTIONS.map(a => `
+  <article class="spot">
+    <div class="ph" style="${a.photo?`background-image:linear-gradient(rgba(27,42,74,.08),rgba(27,42,74,.18)),url('${esc(a.photo)}')`:`background:linear-gradient(135deg,#243760,#3a4d78)`}">
+      ${a.photo?"":a.icon}
+      <span class="t-badge">🚃 ${esc(a.time)}</span>
+    </div>
+    <div class="b">
+      <h3>${esc(a.name)}</h3>
+      <p>${esc(a.desc)}</p>
+    </div>
+  </article>
+`).join("");
+
+/* rooms */
+function ratingRow(r){
+  if(!r.rating) return "";
+  return `<div class="rating"><span class="star">★</span><b>${r.rating}</b>${r.reviews?`<span class="n">· ${r.reviews} reviews</span>`:""}</div>`;
+}
+function metaRow(r){
+  const p=[];
+  if(r.guests) p.push(`Up to <b>${r.guests}</b> guests`);
+  if(r.beds) p.push(esc(r.beds));
+  if(r.size) p.push(esc(r.size));
+  return p.map(x=>`<span>${x}</span>`).join("");
+}
+document.getElementById("roomGrid").innerHTML = ROOMS.map(r => `
+  <article class="card">
+    <div class="photo ${r.photo?"":"ph"}" ${r.photo?`style="background-image:url('${esc(r.photo)}')"`:""}>
+      <span class="code">${esc(r.code)}</span>
+      ${r.badge?`<span class="badge">${esc(r.badge)}</span>`:""}
+      ${r.photo?"":`<span>${esc(r.code)}</span>`}
+    </div>
+    <div class="body">
+      <h3>${esc(r.name)}</h3>
+      ${ratingRow(r)}
+      <p class="desc">${esc(r.desc)}</p>
+      <div class="meta">${metaRow(r)}</div>
+      <div class="cta">
+        <a class="btn btn-book" href="${esc(r.url)}" target="_blank" rel="noopener">Book ${esc(r.code)} on Airbnb <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </article>
+`).join("");
+
+const io = new IntersectionObserver((es)=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} });
+},{threshold:.1});
+document.querySelectorAll(".card").forEach((c,i)=>{ c.style.transitionDelay=(i%2)*0.06+"s"; io.observe(c); });
+</script>
+</body>
+</html>
