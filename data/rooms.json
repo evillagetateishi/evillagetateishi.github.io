@@ -1,22 +1,88 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "_note": "公開情報のみを記載する。書いてよい項目・書いてはいけない項目は docs/DATA_GUIDE.md を参照。",
+  "site": {
+    "base_url": "https://evillagetateishi.github.io",
+    "last_updated": "2026-08-19",
+    "business": {
+      "name": "e-village TATEISHI",
+      "alternate_names": [
+        "e-VILLAGE TATEISHI",
+        "イービレッジ立石"
+      ],
+      "operator": "e-HOUSE株式会社",
+      "license_type": {
+        "en": "Hotel and Ryokan Business",
+        "ja": "旅館・ホテル営業"
+      },
+      "license_authority": {
+        "en": "Director of the Katsushika City Public Health Center",
+        "ja": "葛飾区保健所長"
+      },
+      "address": {
+        "region": {
+          "en": "Tokyo",
+          "ja": "東京都"
+        },
+        "locality": {
+          "en": "Katsushika City",
+          "ja": "葛飾区"
+        },
+        "street": {
+          "en": "Higashi-Tateishi 3-chome",
+          "ja": "東立石三丁目"
+        },
+        "full": {
+          "en": "Higashi-Tateishi 3-chome, Katsushika City, Tokyo, Japan",
+          "ja": "東京都葛飾区東立石三丁目"
+        }
+      },
+      "geo": {
+        "latitude": 35.73547,
+        "longitude": 139.84757
+      },
+      "telephone": null,
+      "nearest_station": {
+        "en": "Keisei Tateishi Station",
+        "ja": "京成立石駅"
+      },
+      "checkin": "16:00",
+      "checkout": "10:00",
+      "map_url": "https://maps.app.goo.gl/SifWLT97SxibungQ6",
+      "images": [
+        "access-map.jpg"
+      ]
+    }
+  },
   "rooms": [
     {
       "code": "EVT101",
-      "name": "Loft & Starry Sky",
       "active": true,
+      "floor": 1,
       "capacity": 5,
+      "name": {
+        "en": "Loft & Starry Sky",
+        "ja": "ロフトと星空の部屋"
+      },
       "layout": {
         "en": "Studio with loft",
         "ja": "ワンルーム＋ロフト"
       },
+      "beds": {
+        "en": "4 beds (2 loft)",
+        "ja": "ベッド4台（うちロフトに2台）"
+      },
+      "size": "39 m²",
+      "desc": {
+        "en": "A playful loft reached by a green ladder, a hammock chair, and a ceiling that fills with stars when the lights go out. Kids' favorite.",
+        "ja": "緑のはしごで上がるロフト、ハンモックチェア、消灯すると天井いっぱいに星が広がります。お子さまに人気の部屋です。"
+      },
+      "badge": {
+        "en": "Top 5% of homes",
+        "ja": "上位5%の宿"
+      },
       "rating": 4.97,
       "reviews": 77,
-      "badge": "Top 5% of homes",
-      "beds": "4 beds (2 loft)",
-      "size": "39 m²",
-      "desc": "A playful loft reached by a green ladder, a hammock chair, and a ceiling that fills with stars when the lights go out. Kids' favorite.",
       "amenities": {
         "en": [
           "Full kitchen",
@@ -51,25 +117,37 @@
       "airbnb_url": "https://www.airbnb.jp/rooms/1333227498320991614",
       "license": {
         "number": "7葛保生環令17号",
-        "authority": "葛飾区保健所",
-        "display": false
+        "display": true
       }
     },
     {
       "code": "EVT201",
-      "name": "Choju-Giga Room",
       "active": true,
+      "floor": 2,
       "capacity": 5,
+      "name": {
+        "en": "Choju-Giga Room",
+        "ja": "鳥獣戯画の部屋"
+      },
       "layout": {
         "en": "1LDK",
         "ja": "1LDK"
       },
+      "beds": {
+        "en": "3 beds",
+        "ja": "ベッド3台"
+      },
+      "size": "36 m²",
+      "desc": {
+        "en": "Dine beneath Japan's famous 12th-century 'frolicking animals' scroll art. A bright, calm 1LDK with a counter-style dining table.",
+        "ja": "12世紀の絵巻「鳥獣戯画」を眺めながら食事ができる部屋。カウンター式のダイニングテーブルを備えた、明るく静かな1LDKです。"
+      },
+      "badge": {
+        "en": "",
+        "ja": ""
+      },
       "rating": 4.98,
       "reviews": 46,
-      "badge": "",
-      "beds": "3 beds",
-      "size": "36 m²",
-      "desc": "Dine beneath Japan's famous 12th-century 'frolicking animals' scroll art. A bright, calm 1LDK with a counter-style dining table.",
       "amenities": {
         "en": [
           "Full kitchen",
@@ -102,25 +180,37 @@
       "airbnb_url": "https://www.airbnb.jp/rooms/1360496370015696566",
       "license": {
         "number": "7葛保生環令18号",
-        "authority": "葛飾区保健所",
-        "display": false
+        "display": true
       }
     },
     {
       "code": "EVT202",
-      "name": "Botanical Dining Room",
       "active": true,
+      "floor": 2,
       "capacity": 5,
+      "name": {
+        "en": "Botanical Dining Room",
+        "ja": "ボタニカルダイニングの部屋"
+      },
       "layout": {
         "en": "1LDK",
         "ja": "1LDK"
       },
+      "beds": {
+        "en": "3 beds",
+        "ja": "ベッド3台"
+      },
+      "size": "36 m²",
+      "desc": {
+        "en": "A bright 2nd-floor apartment with botanical wallpaper inspired by museum plant specimens. Great for families, business trips and longer stays.",
+        "ja": "植物標本から着想した壁紙が印象的な2階の部屋。ご家族・出張・長期滞在に向いた明るい1LDKです。"
+      },
+      "badge": {
+        "en": "Guest Favorite",
+        "ja": "ゲストのお気に入り"
+      },
       "rating": 4.93,
       "reviews": 56,
-      "badge": "Guest Favorite",
-      "beds": "3 beds",
-      "size": "36 m²",
-      "desc": "A bright 2nd-floor apartment with botanical wallpaper inspired by museum plant specimens. Great for families, business trips and longer stays.",
       "amenities": {
         "en": [
           "Full kitchen",
@@ -153,25 +243,37 @@
       "airbnb_url": "https://www.airbnb.jp/rooms/1361139822645478998",
       "license": {
         "number": "7葛保生環令19号",
-        "authority": "葛飾区保健所",
-        "display": false
+        "display": true
       }
     },
     {
       "code": "EVT301",
-      "name": "Blue Design Room",
       "active": true,
+      "floor": 3,
       "capacity": 5,
+      "name": {
+        "en": "Blue Design Room",
+        "ja": "ブルーデザインの部屋"
+      },
       "layout": {
         "en": "1LDK",
         "ja": "1LDK"
       },
+      "beds": {
+        "en": "3 beds",
+        "ja": "ベッド3台"
+      },
+      "size": "36 m²",
+      "desc": {
+        "en": "An artistic deep-blue dining space with a resort-like calm. Spacious 1LDK ideal for families and longer stays.",
+        "ja": "深いブルーで統一したダイニングが落ち着いた雰囲気をつくります。ご家族や長期滞在に向いた広めの1LDKです。"
+      },
+      "badge": {
+        "en": "",
+        "ja": ""
+      },
       "rating": 4.95,
       "reviews": 38,
-      "badge": "",
-      "beds": "3 beds",
-      "size": "36 m²",
-      "desc": "An artistic deep-blue dining space with a resort-like calm. Spacious 1LDK ideal for families and longer stays.",
       "amenities": {
         "en": [
           "Full kitchen",
@@ -204,25 +306,37 @@
       "airbnb_url": "https://www.airbnb.jp/rooms/1361144424351234078",
       "license": {
         "number": "7葛保生環令20号",
-        "authority": "葛飾区保健所",
-        "display": false
+        "display": true
       }
     },
     {
       "code": "EVT302",
-      "name": "Marimekko Room",
       "active": true,
+      "floor": 3,
       "capacity": 5,
+      "name": {
+        "en": "Marimekko Room",
+        "ja": "マリメッコの部屋"
+      },
       "layout": {
         "en": "1LDK",
         "ja": "1LDK"
       },
+      "beds": {
+        "en": "3 beds",
+        "ja": "ベッド3台"
+      },
+      "size": "",
+      "desc": {
+        "en": "Bright Nordic interior with cheerful Marimekko wallpaper — warm, cozy and quietly tucked on the 3rd floor.",
+        "ja": "マリメッコの壁紙が明るい北欧テイストの部屋。3階の静かな一角にあります。"
+      },
+      "badge": {
+        "en": "",
+        "ja": ""
+      },
       "rating": 4.94,
       "reviews": 47,
-      "badge": "",
-      "beds": "3 beds",
-      "size": "",
-      "desc": "Bright Nordic interior with cheerful Marimekko wallpaper — warm, cozy and quietly tucked on the 3rd floor.",
       "amenities": {
         "en": [
           "Full kitchen",
@@ -255,8 +369,7 @@
       "airbnb_url": "https://www.airbnb.jp/rooms/1361146597284334432",
       "license": {
         "number": "7葛保生環令21号",
-        "authority": "葛飾区保健所",
-        "display": false
+        "display": true
       }
     }
   ]

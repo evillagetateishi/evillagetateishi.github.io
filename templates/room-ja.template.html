@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{TITLE}}</title>
+<meta name="description" content="{{META_DESCRIPTION}}" />
+<meta property="og:title" content="{{TITLE}}" />
+<meta property="og:description" content="{{META_DESCRIPTION}}" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="{{OG_IMAGE}}" />
+<meta name="robots" content="index, follow" />
+{{HREFLANG}}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+{{STYLE}}</style>
+{{JSONLD}}
+{{MATOMO_TAG}}</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand"><a href="../../ja.html">e-village TATEISHI<small>Tokyo Apartment Hotel</small></a></div>
+    <a class="lang-switch" href="../{{FILE}}" hreflang="en" lang="en">English</a>
+    <a class="hdr-cta" href="{{AIRBNB_URL}}" target="_blank" rel="noopener">Airbnbで予約</a>
+  </div>
+</header>
+
+<main>
+  <section class="section room-detail">
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="パンくずリスト">
+        <a href="../../ja.html">e-village TATEISHI</a> <span aria-hidden="true">/</span>
+        <a href="../../ja.html#rooms">客室一覧</a> <span aria-hidden="true">/</span>
+        <span aria-current="page">{{ROOM_CRUMB}}</span>
+      </nav>
+
+      <div class="sec-head">
+        <span class="kicker">{{ROOM_CODE}}</span>
+        <h2>{{ROOM_NAME}}</h2>
+        <p class="lead-note">{{ROOM_DESC}}</p>
+      </div>
+
+      <div class="room-grid">
+        <figure class="room-photo">
+          <img src="../../{{PHOTO}}" alt="{{PHOTO_ALT}}" loading="lazy" width="1280" height="960">
+        </figure>
+        <div class="room-facts">
+          <dl class="facts">
+{{FACTS}}          </dl>
+          <h3 class="amen-head">設備</h3>
+          <ul class="amen-list">
+{{AMENITIES}}          </ul>
+          <div class="cta">
+            <a class="btn btn-book btn-primary" href="{{AIRBNB_URL}}" target="_blank" rel="noopener">{{ROOM_CODE}} をAirbnbで予約 <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="group-note">
+        <h3>ほかの部屋</h3>
+        <p class="other-rooms">{{OTHER_ROOMS}}</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="brand">e-village TATEISHI<small>Tokyo Apartment Hotel</small></div>
+    <p class="fnote">
+      東京都葛飾区・京成立石駅から徒歩5分。2024年新築。<br>
+      空室状況・料金・ご予約は各部屋のAirbnbページをご覧ください。<br>
+    </p>
+{{LEGAL_NOTICE}}
+  </div>
+</footer>
+
+<!-- mobile sticky CTA -->
+<div class="sticky-bar">
+  <a class="btn btn-book btn-primary" href="{{AIRBNB_URL}}" target="_blank" rel="noopener">{{ROOM_CODE}} をAirbnbで予約</a>
+  <a class="btn btn-map" href="../../ja.html#rooms">↩ 客室一覧</a>
+</div>
+
+</body>
+</html>

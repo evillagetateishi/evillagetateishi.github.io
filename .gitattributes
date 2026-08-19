@@ -1,0 +1,7 @@
+# 生成物の一致検査を OS 間でぶれさせないため、テキストは常に LF で扱う。
+# （Windows で作業しても、リポジトリにもチェックアウトにも CRLF を持ち込まない）
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary

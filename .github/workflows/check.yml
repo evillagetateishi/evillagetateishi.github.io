@@ -28,29 +28,31 @@ jobs:
         run: ./gitleaks git . --redact --verbose --exit-code 1
 
   validate:
-    name: rooms.json 検査
+    name: データと生成物の検査
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: スキーマと禁止パターン
+      - name: スキーマ・禁止パターン・構造化データ・hreflang
         run: python scripts/validate.py
 
   generated:
-    name: index.html の生成一致
+    name: 生成一致（rooms.json から作り直して差分ゼロ）
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          # index.html は CRLF で管理している。改行を書き換えられると比較にならない。
-          fetch-depth: 1
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: コミット済み index.html と生成結果を突き合わせる
-        run: python scripts/generate.py --check
+      - name: 生成し直す
+        run: python scripts/generate.py
+      - name: コミット済みの生成物と一致すること
+        # HTML を手で直すとここで止まる。直すのは data/ templates/ scripts/ だけ。
+        run: git diff --exit-code -- index.html ja.html sitemap.xml robots.txt rooms
+      - name: 生成対象外のページが残っていないこと
+        run: git status --porcelain -- rooms | tee /dev/stderr | test ! -s /dev/stdin
 
   guard:
     name: 触ってはいけないファイルの保全
