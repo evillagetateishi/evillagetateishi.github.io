@@ -247,32 +247,7 @@
   ]
 }
 </script>
-
-<!-- Matomo -->
-<script>
-  var _paq = window._paq = window._paq || [];
-  /* Cookie を使わない設定。同意バナーなしで計測するため */
-  _paq.push(['disableCookies']);
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function () {
-    var u = "https://iguchi-koumusyo.com/analytics/";
-    _paq.push(['setTrackerUrl', u + 'matomo.php']);
-    _paq.push(['setSiteId', '4']);
-    var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
-    g.async = true; g.src = u + 'matomo.js'; s.parentNode.insertBefore(g, s);
-  })();
-  /* Airbnb 予約ボタンのクリックを airbnb / click / 部屋コード で記録する */
-  document.addEventListener('click', function (e) {
-    var t = e.target;
-    var a = t && t.closest ? t.closest('a.btn-book') : null;
-    if (!a) return;
-    var m = (a.textContent || '').match(/EVT\d+/);
-    if (m) _paq.push(['trackEvent', 'airbnb', 'click', m[0]]);
-  });
-</script>
-<!-- End Matomo Code -->
-</head>
+{{MATOMO_TAG}}</head>
 <body>
 
 <header class="site">
@@ -480,48 +455,7 @@ const ATTRACTIONS = [
    ▼ ROOMS — 部屋写真もローカルファイルから読み込み ▼
    写真を変える場合は images/rooms/ の同名ファイルを差し替えてください。
 ========================================================= */
-const ROOMS = [
-  {
-    code:"EVT101", name:"Loft & Starry Sky",
-    rating:4.97, reviews:77, badge:"Top 5% of homes",
-    guests:5, beds:"4 beds (2 loft)", size:"39 m²",
-    desc:"A playful loft reached by a green ladder, a hammock chair, and a ceiling that fills with stars when the lights go out. Kids' favorite.",
-    photo:"images/rooms/evt101.png",
-    url:"https://www.airbnb.jp/rooms/1333227498320991614"
-  },
-  {
-    code:"EVT201", name:"Choju-Giga Room",
-    rating:4.98, reviews:46, badge:"",
-    guests:5, beds:"3 beds", size:"36 m²",
-    desc:"Dine beneath Japan's famous 12th-century 'frolicking animals' scroll art. A bright, calm 1LDK with a counter-style dining table.",
-    photo:"images/rooms/evt201.png",
-    url:"https://www.airbnb.jp/rooms/1360496370015696566"
-  },
-  {
-    code:"EVT202", name:"Botanical Dining Room",
-    rating:4.93, reviews:56, badge:"Guest Favorite",
-    guests:5, beds:"3 beds", size:"36 m²",
-    desc:"A bright 2nd-floor apartment with botanical wallpaper inspired by museum plant specimens. Great for families, business trips and longer stays.",
-    photo:"images/rooms/evt202.png",
-    url:"https://www.airbnb.jp/rooms/1361139822645478998"
-  },
-  {
-    code:"EVT301", name:"Blue Design Room",
-    rating:4.95, reviews:38, badge:"",
-    guests:5, beds:"3 beds", size:"36 m²",
-    desc:"An artistic deep-blue dining space with a resort-like calm. Spacious 1LDK ideal for families and longer stays.",
-    photo:"images/rooms/evt301.png",
-    url:"https://www.airbnb.jp/rooms/1361144424351234078"
-  },
-  {
-    code:"EVT302", name:"Marimekko Room",
-    rating:4.94, reviews:47, badge:"",
-    guests:5, beds:"3 beds", size:"",
-    desc:"Bright Nordic interior with cheerful Marimekko wallpaper — warm, cozy and quietly tucked on the 3rd floor.",
-    photo:"images/rooms/evt302.png",
-    url:"https://www.airbnb.jp/rooms/1361146597284334432"
-  }
-];
+{{ROOMS_JS}}
 
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 

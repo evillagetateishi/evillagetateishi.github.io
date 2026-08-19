@@ -1,0 +1,66 @@
+name: check
+
+# 公開リポジトリなので、秘密情報の混入と生成物のズレを push のたびに機械で見る。
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gitleaks:
+    name: 秘密情報スキャン
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # 全履歴を見る（過去のコミットに残った秘密も拾うため）
+      - name: gitleaks を取得
+        run: |
+          set -eu
+          curl -sSL -o gitleaks.tar.gz \
+            https://github.com/gitleaks/gitleaks/releases/download/v8.28.0/gitleaks_8.28.0_linux_x64.tar.gz
+          tar xzf gitleaks.tar.gz gitleaks
+      - name: 全履歴スキャン
+        run: ./gitleaks git . --redact --verbose --exit-code 1
+
+  validate:
+    name: rooms.json 検査
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: スキーマと禁止パターン
+        run: python scripts/validate.py
+
+  generated:
+    name: index.html の生成一致
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # index.html は CRLF で管理している。改行を書き換えられると比較にならない。
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: コミット済み index.html と生成結果を突き合わせる
+        run: python scripts/generate.py --check
+
+  guard:
+    name: 触ってはいけないファイルの保全
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: GSC 所有権確認ファイルが存在すること
+        # Search Console の所有権はこのファイルで確認されている。
+        # 生成・検査の対象外であり、削除・移動してはならない。
+        run: |
+          set -eu
+          test -f google2bb9730f466ce625.html
+          echo "OK: google2bb9730f466ce625.html は保全されている"

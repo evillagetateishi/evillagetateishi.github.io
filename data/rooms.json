@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "_note": "公開情報のみを記載する。書いてよい項目・書いてはいけない項目は docs/DATA_GUIDE.md を参照。",
+  "rooms": [
+    {
+      "code": "EVT101",
+      "name": "Loft & Starry Sky",
+      "active": true,
+      "capacity": 5,
+      "layout": {
+        "en": "Studio with loft",
+        "ja": "ワンルーム＋ロフト"
+      },
+      "rating": 4.97,
+      "reviews": 77,
+      "badge": "Top 5% of homes",
+      "beds": "4 beds (2 loft)",
+      "size": "39 m²",
+      "desc": "A playful loft reached by a green ladder, a hammock chair, and a ceiling that fills with stars when the lights go out. Kids' favorite.",
+      "amenities": {
+        "en": [
+          "Full kitchen",
+          "Washing machine",
+          "Separate bath and toilet",
+          "Free high-speed fiber Wi-Fi",
+          "Google TV (Netflix / YouTube)",
+          "Self check-in from 4:00 PM",
+          "Free luggage storage",
+          "Loft with starry ceiling",
+          "Hammock chair"
+        ],
+        "ja": [
+          "キッチン",
+          "洗濯機",
+          "バス・トイレ別",
+          "高速光回線Wi-Fi（無料）",
+          "Google TV（Netflix / YouTube）",
+          "セルフチェックイン（16:00〜）",
+          "手荷物預かり（無料）",
+          "星空天井のロフト",
+          "ハンモックチェア"
+        ]
+      },
+      "photo": {
+        "file": "images/rooms/evt101.png",
+        "alt": {
+          "en": "Interior of EVT101 with a green ladder to the loft and a starry ceiling",
+          "ja": "ロフトへの緑のはしごと星空天井があるEVT101の室内"
+        }
+      },
+      "airbnb_url": "https://www.airbnb.jp/rooms/1333227498320991614",
+      "license": {
+        "number": "7葛保生環令17号",
+        "authority": "葛飾区保健所",
+        "display": false
+      }
+    },
+    {
+      "code": "EVT201",
+      "name": "Choju-Giga Room",
+      "active": true,
+      "capacity": 5,
+      "layout": {
+        "en": "1LDK",
+        "ja": "1LDK"
+      },
+      "rating": 4.98,
+      "reviews": 46,
+      "badge": "",
+      "beds": "3 beds",
+      "size": "36 m²",
+      "desc": "Dine beneath Japan's famous 12th-century 'frolicking animals' scroll art. A bright, calm 1LDK with a counter-style dining table.",
+      "amenities": {
+        "en": [
+          "Full kitchen",
+          "Washing machine",
+          "Separate bath and toilet",
+          "Free high-speed fiber Wi-Fi",
+          "Google TV (Netflix / YouTube)",
+          "Self check-in from 4:00 PM",
+          "Free luggage storage",
+          "Counter-style dining table"
+        ],
+        "ja": [
+          "キッチン",
+          "洗濯機",
+          "バス・トイレ別",
+          "高速光回線Wi-Fi（無料）",
+          "Google TV（Netflix / YouTube）",
+          "セルフチェックイン（16:00〜）",
+          "手荷物預かり（無料）",
+          "カウンター式ダイニングテーブル"
+        ]
+      },
+      "photo": {
+        "file": "images/rooms/evt201.png",
+        "alt": {
+          "en": "Dining space of EVT201 decorated with Choju-Giga scroll art",
+          "ja": "鳥獣戯画をあしらったEVT201のダイニング"
+        }
+      },
+      "airbnb_url": "https://www.airbnb.jp/rooms/1360496370015696566",
+      "license": {
+        "number": "7葛保生環令18号",
+        "authority": "葛飾区保健所",
+        "display": false
+      }
+    },
+    {
+      "code": "EVT202",
+      "name": "Botanical Dining Room",
+      "active": true,
+      "capacity": 5,
+      "layout": {
+        "en": "1LDK",
+        "ja": "1LDK"
+      },
+      "rating": 4.93,
+      "reviews": 56,
+      "badge": "Guest Favorite",
+      "beds": "3 beds",
+      "size": "36 m²",
+      "desc": "A bright 2nd-floor apartment with botanical wallpaper inspired by museum plant specimens. Great for families, business trips and longer stays.",
+      "amenities": {
+        "en": [
+          "Full kitchen",
+          "Washing machine",
+          "Separate bath and toilet",
+          "Free high-speed fiber Wi-Fi",
+          "Google TV (Netflix / YouTube)",
+          "Self check-in from 4:00 PM",
+          "Free luggage storage",
+          "Botanical wallpaper"
+        ],
+        "ja": [
+          "キッチン",
+          "洗濯機",
+          "バス・トイレ別",
+          "高速光回線Wi-Fi（無料）",
+          "Google TV（Netflix / YouTube）",
+          "セルフチェックイン（16:00〜）",
+          "手荷物預かり（無料）",
+          "ボタニカル壁紙"
+        ]
+      },
+      "photo": {
+        "file": "images/rooms/evt202.png",
+        "alt": {
+          "en": "Dining space of EVT202 with botanical specimen wallpaper",
+          "ja": "植物標本柄の壁紙が特徴のEVT202のダイニング"
+        }
+      },
+      "airbnb_url": "https://www.airbnb.jp/rooms/1361139822645478998",
+      "license": {
+        "number": "7葛保生環令19号",
+        "authority": "葛飾区保健所",
+        "display": false
+      }
+    },
+    {
+      "code": "EVT301",
+      "name": "Blue Design Room",
+      "active": true,
+      "capacity": 5,
+      "layout": {
+        "en": "1LDK",
+        "ja": "1LDK"
+      },
+      "rating": 4.95,
+      "reviews": 38,
+      "badge": "",
+      "beds": "3 beds",
+      "size": "36 m²",
+      "desc": "An artistic deep-blue dining space with a resort-like calm. Spacious 1LDK ideal for families and longer stays.",
+      "amenities": {
+        "en": [
+          "Full kitchen",
+          "Washing machine",
+          "Separate bath and toilet",
+          "Free high-speed fiber Wi-Fi",
+          "Google TV (Netflix / YouTube)",
+          "Self check-in from 4:00 PM",
+          "Free luggage storage",
+          "Deep-blue interior"
+        ],
+        "ja": [
+          "キッチン",
+          "洗濯機",
+          "バス・トイレ別",
+          "高速光回線Wi-Fi（無料）",
+          "Google TV（Netflix / YouTube）",
+          "セルフチェックイン（16:00〜）",
+          "手荷物預かり（無料）",
+          "ブルーを基調とした内装"
+        ]
+      },
+      "photo": {
+        "file": "images/rooms/evt301.png",
+        "alt": {
+          "en": "Deep-blue dining space of EVT301",
+          "ja": "深いブルーで統一されたEVT301のダイニング"
+        }
+      },
+      "airbnb_url": "https://www.airbnb.jp/rooms/1361144424351234078",
+      "license": {
+        "number": "7葛保生環令20号",
+        "authority": "葛飾区保健所",
+        "display": false
+      }
+    },
+    {
+      "code": "EVT302",
+      "name": "Marimekko Room",
+      "active": true,
+      "capacity": 5,
+      "layout": {
+        "en": "1LDK",
+        "ja": "1LDK"
+      },
+      "rating": 4.94,
+      "reviews": 47,
+      "badge": "",
+      "beds": "3 beds",
+      "size": "",
+      "desc": "Bright Nordic interior with cheerful Marimekko wallpaper — warm, cozy and quietly tucked on the 3rd floor.",
+      "amenities": {
+        "en": [
+          "Full kitchen",
+          "Washing machine",
+          "Separate bath and toilet",
+          "Free high-speed fiber Wi-Fi",
+          "Google TV (Netflix / YouTube)",
+          "Self check-in from 4:00 PM",
+          "Free luggage storage",
+          "Nordic interior"
+        ],
+        "ja": [
+          "キッチン",
+          "洗濯機",
+          "バス・トイレ別",
+          "高速光回線Wi-Fi（無料）",
+          "Google TV（Netflix / YouTube）",
+          "セルフチェックイン（16:00〜）",
+          "手荷物預かり（無料）",
+          "北欧テイストの内装"
+        ]
+      },
+      "photo": {
+        "file": "images/rooms/evt302.png",
+        "alt": {
+          "en": "Nordic interior of EVT302 with Marimekko wallpaper",
+          "ja": "マリメッコ柄の壁紙が明るいEVT302の室内"
+        }
+      },
+      "airbnb_url": "https://www.airbnb.jp/rooms/1361146597284334432",
+      "license": {
+        "number": "7葛保生環令21号",
+        "authority": "葛飾区保健所",
+        "display": false
+      }
+    }
+  ]
+}
