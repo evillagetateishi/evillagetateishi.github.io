@@ -113,6 +113,33 @@ def active_rooms(data):
 SIZE_RE = re.compile(r"^(\d{1,3}(?:\.\d)?) m²$")
 
 
+def beds_text(room, lang):
+    """bed_details から可視表示の一文を組み立てる。
+
+    以前は rooms.json に「ベッド3台」という自由文を持っていたが、それだと
+    構造化データ用の内訳と表示文が別々の真実になり、片方だけ古くなる。
+    表示もJSON-LDもここを唯一の出所にする。
+    """
+    parts = []
+    for entry in room["bed_details"]:
+        name = entry["type"][lang]
+        count = entry["count"]
+        text = ("%s ×%d" % (name, count)) if lang == "en" else ("%s%d台" % (name, count))
+        note = entry.get("note")
+        if note:
+            text += (" (%s)" % note[lang]) if lang == "en" else ("（%s）" % note[lang])
+        parts.append(text)
+    return ", ".join(parts) if lang == "en" else "・".join(parts)
+
+
+def bed_nodes(room):
+    """schema.org の BedDetails。typeOfBed は英語名で書く（語彙が英語のため）。"""
+    return [{"@type": "BedDetails",
+             "typeOfBed": entry["type"]["en"],
+             "numberOfBeds": entry["count"]}
+            for entry in room["bed_details"]]
+
+
 def floor_size_node(size):
     """schema.org の floorSize を作る。値が無い・読めないときは None。
 
@@ -175,8 +202,8 @@ def room_meta(room, lang):
         parts.append("Up to <b>%d</b> guests" % room["capacity"])
     else:
         parts.append("定員 <b>%d</b> 名" % room["capacity"])
-    if room["beds"][lang]:
-        parts.append(esc(room["beds"][lang]))
+    if room["bed_details"]:
+        parts.append(esc(beds_text(room, lang)))
     if room["size"]:
         parts.append(esc(room["size"]))
     return "".join("<span>%s</span>" % p for p in parts)
@@ -322,6 +349,7 @@ def room_node(data, room, lang):
         "containedInPlace": {"@id": base + "/#lodging"},
         "sameAs": room["airbnb_url"],
     }
+    node["bed"] = bed_nodes(room)
     floor_size = floor_size_node(room["size"])
     if floor_size is not None:
         node["floorSize"] = floor_size
@@ -387,7 +415,7 @@ def facts_html(room, lang):
                  ("Floor", "%dF" % room["floor"]),
                  ("Guests", "up to %d" % room["capacity"]),
                  ("Layout", room["layout"]["en"]),
-                 ("Beds", room["beds"]["en"])]
+                 ("Beds", beds_text(room, "en"))]
         if room["size"]:
             pairs.append(("Size", room["size"]))
     else:
@@ -395,7 +423,7 @@ def facts_html(room, lang):
                  ("階", "%d階" % room["floor"]),
                  ("定員", "%d名まで" % room["capacity"]),
                  ("間取り", room["layout"]["ja"]),
-                 ("ベッド", room["beds"]["ja"])]
+                 ("ベッド", beds_text(room, "ja"))]
         if room["size"]:
             pairs.append(("広さ", room["size"]))
     return "".join("            <dt>%s</dt><dd>%s</dd>\n" % (esc(k), esc(v)) for k, v in pairs)

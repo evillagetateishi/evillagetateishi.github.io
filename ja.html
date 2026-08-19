@@ -166,7 +166,12 @@
   /* ---------- footer & sticky bar ---------- */
   footer.site{ background:var(--ink); color:#c2c6d4; padding-block:36px 110px; margin-top:14px; }
   @media (min-width:761px){ footer.site{ padding-bottom:36px; } }
-  footer .wrap{ display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:flex-start; }
+  /* ヘッダー用の `.site .wrap`（height:58px・align-items:center）は詳細度(0,2,0)で
+     `footer .wrap`(0,1,1) に勝つため、フッターにも 58px の固定高さが効いてしまっていた。
+     その結果フッター内の法令表示が枠外へはみ出し、モバイルの固定バーに隠れて読めなかった。
+     セレクタを footer.site .wrap(0,2,1) にして勝たせ、高さの固定だけを解く。 */
+  footer.site .wrap{ display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between;
+    align-items:flex-start; height:auto; }
   footer .brand{ color:#fff; }
   footer .brand small{ color:var(--gold); }
   footer .fnote{ font-size:.72rem; color:#9aa0b3; max-width:54ch; line-height:1.7; }
@@ -224,7 +229,7 @@
 </style>
 
 
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"LodgingBusiness","@id":"https://evillagetateishi.github.io/#lodging","name":"e-village TATEISHI","alternateName":["e-VILLAGE TATEISHI","イービレッジ立石"],"url":"https://evillagetateishi.github.io/","image":["https://evillagetateishi.github.io/access-map.jpg"],"address":{"@type":"PostalAddress","addressCountry":"JP","addressRegion":"東京都","addressLocality":"葛飾区","streetAddress":"東立石三丁目"},"numberOfRooms":5,"geo":{"@type":"GeoCoordinates","latitude":35.73547,"longitude":139.84757},"hasMap":"https://maps.app.goo.gl/SifWLT97SxibungQ6"},{"@type":"HotelRoom","@id":"https://evillagetateishi.github.io/rooms/ja/evt101.html#room","name":"EVT101 — ロフトと星空の部屋","description":"緑のはしごで上がるロフト、ハンモックチェア、消灯すると天井いっぱいに星が広がります。お子さまに人気の部屋です。","url":"https://evillagetateishi.github.io/rooms/ja/evt101.html","image":["https://evillagetateishi.github.io/images/rooms/evt101.png"],"floorLevel":"1","occupancy":{"@type":"QuantitativeValue","maxValue":5},"containedInPlace":{"@id":"https://evillagetateishi.github.io/#lodging"},"sameAs":"https://www.airbnb.jp/rooms/1333227498320991614","floorSize":{"@type":"QuantitativeValue","value":39,"unitCode":"MTK"}},{"@type":"HotelRoom","@id":"https://evillagetateishi.github.io/rooms/ja/evt201.html#room","name":"EVT201 — 鳥獣戯画の部屋","description":"12世紀の絵巻「鳥獣戯画」を眺めながら食事ができる部屋。カウンター式のダイニングテーブルを備えた、明るく静かな1LDKです。","url":"https://evillagetateishi.github.io/rooms/ja/evt201.html","image":["https://evillagetateishi.github.io/images/rooms/evt201.png"],"floorLevel":"2","occupancy":{"@type":"QuantitativeValue","maxValue":5},"containedInPlace":{"@id":"https://evillagetateishi.github.io/#lodging"},"sameAs":"https://www.airbnb.jp/rooms/1360496370015696566","floorSize":{"@type":"QuantitativeValue","value":36,"unitCode":"MTK"}},{"@type":"HotelRoom","@id":"https://evillagetateishi.github.io/rooms/ja/evt202.html#room","name":"EVT202 — ボタニカルダイニングの部屋","description":"植物標本から着想した壁紙が印象的な2階の部屋。ご家族・出張・長期滞在に向いた明るい1LDKです。","url":"https://evillagetateishi.github.io/rooms/ja/evt202.html","image":["https://evillagetateishi.github.io/images/rooms/evt202.png"],"floorLevel":"2","occupancy":{"@type":"QuantitativeValue","maxValue":5},"containedInPlace":{"@id":"https://evillagetateishi.github.io/#lodging"},"sameAs":"https://www.airbnb.jp/rooms/1361139822645478998","floorSize":{"@type":"QuantitativeValue","value":36,"unitCode":"MTK"}},{"@type":"HotelRoom","@id":"https://evillagetateishi.github.io/rooms/ja/evt301.html#room","name":"EVT301 — ブルーデザインの部屋","description":"深いブルーで統一したダイニングが落ち着いた雰囲気をつくります。ご家族や長期滞在に向いた広めの1LDKです。","url":"https://evillagetateishi.github.io/rooms/ja/evt301.html","image":["https://evillagetateishi.github.io/images/rooms/evt301.png"],"floorLevel":"3","occupancy":{"@type":"QuantitativeValue","maxValue":5},"containedInPlace":{"@id":"https://evillagetateishi.github.io/#lodging"},"sameAs":"https://www.airbnb.jp/rooms/1361144424351234078","floorSize":{"@type":"QuantitativeValue","value":36,"unitCode":"MTK"}},{"@type":"HotelRoom","@id":"https://evillagetateishi.github.io/rooms/ja/evt302.html#room","name":"EVT302 — マリメッコの部屋","description":"マリメッコの壁紙が明るい北欧テイストの部屋。3階の静かな一角にあります。","url":"https://evillagetateishi.github.io/rooms/ja/evt302.html","image":["https://evillagetateishi.github.io/images/rooms/evt302.png"],"floorLevel":"3","occupancy":{"@type":"QuantitativeValue","maxValue":5},"containedInPlace":{"@id":"https://evillagetateishi.github.io/#lodging"},"sameAs":"https://www.airbnb.jp/rooms/1361146597284334432","floorSize":{"@type":"QuantitativeValue","value":36,"unitCode":"MTK"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"LodgingBusiness","@id":"https://evillagetateishi.github.io/#lodging","name":"e-village TATEISHI","alternateName":["e-VILLAGE TATEISHI","イービレッジ立石"],"url":"https://evillagetateishi.github.io/","image":["https://evillagetateishi.github.io/access-map.jpg"],"address":{"@type":"PostalAddress","addressCountry":"JP","addressRegion":"東京都","addressLocality":"葛飾区","streetAddress":"東立石三丁目"},"numberOfRooms":5,"geo":{"@type":"GeoCoordinates","latitude":35.73547,"longitude":139.84757},"hasMap":"https://maps.app.goo.gl/SifWLT97SxibungQ6"},{"@type":"HotelRoom","@id":"https://evillagetateishi.github.io/rooms/ja/evt101.html#room","name":"EVT101 — ロフトと星空の部屋","description":"緑のはしごで上がるロフト、ハンモックチェア、消灯すると天井いっぱいに星が広がります。お子さまに人気の部屋です。","url":"https://evillagetateishi.github.io/rooms/ja/evt101.html","image":["https://evillagetateishi.github.io/images/rooms/evt101.png"],"floorLevel":"1","occupancy":{"@type":"QuantitativeValue","maxValue":5},"containedInPlace":{"@id":"https://evillagetateishi.github.io/#lodging"},"sameAs":"https://www.airbnb.jp/rooms/1333227498320991614","bed":[{"@type":"BedDetails","typeOfBed":"Double bed","numberOfBeds":2},{"@type":"BedDetails","typeOfBed":"Single bed","numberOfBeds":2}],"floorSize":{"@type":"QuantitativeValue","value":39,"unitCode":"MTK"}},{"@type":"HotelRoom","@id":"https://evillagetateishi.github.io/rooms/ja/evt201.html#room","name":"EVT201 — 鳥獣戯画の部屋","description":"12世紀の絵巻「鳥獣戯画」を眺めながら食事ができる部屋。カウンター式のダイニングテーブルを備えた、明るく静かな1LDKです。","url":"https://evillagetateishi.github.io/rooms/ja/evt201.html","image":["https://evillagetateishi.github.io/images/rooms/evt201.png"],"floorLevel":"2","occupancy":{"@type":"QuantitativeValue","maxValue":5},"containedInPlace":{"@id":"https://evillagetateishi.github.io/#lodging"},"sameAs":"https://www.airbnb.jp/rooms/1360496370015696566","bed":[{"@type":"BedDetails","typeOfBed":"Double bed","numberOfBeds":2},{"@type":"BedDetails","typeOfBed":"Sofa bed","numberOfBeds":1}],"floorSize":{"@type":"QuantitativeValue","value":36,"unitCode":"MTK"}},{"@type":"HotelRoom","@id":"https://evillagetateishi.github.io/rooms/ja/evt202.html#room","name":"EVT202 — ボタニカルダイニングの部屋","description":"植物標本から着想した壁紙が印象的な2階の部屋。ご家族・出張・長期滞在に向いた明るい1LDKです。","url":"https://evillagetateishi.github.io/rooms/ja/evt202.html","image":["https://evillagetateishi.github.io/images/rooms/evt202.png"],"floorLevel":"2","occupancy":{"@type":"QuantitativeValue","maxValue":5},"containedInPlace":{"@id":"https://evillagetateishi.github.io/#lodging"},"sameAs":"https://www.airbnb.jp/rooms/1361139822645478998","bed":[{"@type":"BedDetails","typeOfBed":"Double bed","numberOfBeds":2},{"@type":"BedDetails","typeOfBed":"Sofa bed","numberOfBeds":1}],"floorSize":{"@type":"QuantitativeValue","value":36,"unitCode":"MTK"}},{"@type":"HotelRoom","@id":"https://evillagetateishi.github.io/rooms/ja/evt301.html#room","name":"EVT301 — ブルーデザインの部屋","description":"深いブルーで統一したダイニングが落ち着いた雰囲気をつくります。ご家族や長期滞在に向いた広めの1LDKです。","url":"https://evillagetateishi.github.io/rooms/ja/evt301.html","image":["https://evillagetateishi.github.io/images/rooms/evt301.png"],"floorLevel":"3","occupancy":{"@type":"QuantitativeValue","maxValue":5},"containedInPlace":{"@id":"https://evillagetateishi.github.io/#lodging"},"sameAs":"https://www.airbnb.jp/rooms/1361144424351234078","bed":[{"@type":"BedDetails","typeOfBed":"Double bed","numberOfBeds":2},{"@type":"BedDetails","typeOfBed":"Sofa bed","numberOfBeds":1}],"floorSize":{"@type":"QuantitativeValue","value":36,"unitCode":"MTK"}},{"@type":"HotelRoom","@id":"https://evillagetateishi.github.io/rooms/ja/evt302.html#room","name":"EVT302 — マリメッコの部屋","description":"マリメッコの壁紙が明るい北欧テイストの部屋。3階の静かな一角にあります。","url":"https://evillagetateishi.github.io/rooms/ja/evt302.html","image":["https://evillagetateishi.github.io/images/rooms/evt302.png"],"floorLevel":"3","occupancy":{"@type":"QuantitativeValue","maxValue":5},"containedInPlace":{"@id":"https://evillagetateishi.github.io/#lodging"},"sameAs":"https://www.airbnb.jp/rooms/1361146597284334432","bed":[{"@type":"BedDetails","typeOfBed":"Double bed","numberOfBeds":2},{"@type":"BedDetails","typeOfBed":"Sofa bed","numberOfBeds":1}],"floorSize":{"@type":"QuantitativeValue","value":36,"unitCode":"MTK"}}]}</script>
 
 <!-- Matomo -->
 <script>
@@ -410,7 +415,7 @@
             <h3>ロフトと星空の部屋</h3>
             <div class="rating"><span class="star">★</span><b>4.97</b><span class="n">· レビュー77件</span></div>
             <p class="desc">緑のはしごで上がるロフト、ハンモックチェア、消灯すると天井いっぱいに星が広がります。お子さまに人気の部屋です。</p>
-            <div class="meta"><span>定員 <b>5</b> 名</span><span>ベッド4台（うちロフトに2台）</span><span>39 m²</span></div>
+            <div class="meta"><span>定員 <b>5</b> 名</span><span>ダブルベッド2台・シングルベッド2台（ロフト）</span><span>39 m²</span></div>
             <div class="cta">
               <a class="btn btn-book" href="https://www.airbnb.jp/rooms/1333227498320991614" target="_blank" rel="noopener">EVT101 をAirbnbで予約 <span class="arrow">→</span></a>
               <a class="btn btn-more" href="rooms/ja/evt101.html">部屋の詳細</a>
@@ -425,7 +430,7 @@
             <h3>鳥獣戯画の部屋</h3>
             <div class="rating"><span class="star">★</span><b>4.98</b><span class="n">· レビュー46件</span></div>
             <p class="desc">12世紀の絵巻「鳥獣戯画」を眺めながら食事ができる部屋。カウンター式のダイニングテーブルを備えた、明るく静かな1LDKです。</p>
-            <div class="meta"><span>定員 <b>5</b> 名</span><span>ベッド3台</span><span>36 m²</span></div>
+            <div class="meta"><span>定員 <b>5</b> 名</span><span>ダブルベッド2台・ソファベッド1台</span><span>36 m²</span></div>
             <div class="cta">
               <a class="btn btn-book" href="https://www.airbnb.jp/rooms/1360496370015696566" target="_blank" rel="noopener">EVT201 をAirbnbで予約 <span class="arrow">→</span></a>
               <a class="btn btn-more" href="rooms/ja/evt201.html">部屋の詳細</a>
@@ -441,7 +446,7 @@
             <h3>ボタニカルダイニングの部屋</h3>
             <div class="rating"><span class="star">★</span><b>4.93</b><span class="n">· レビュー56件</span></div>
             <p class="desc">植物標本から着想した壁紙が印象的な2階の部屋。ご家族・出張・長期滞在に向いた明るい1LDKです。</p>
-            <div class="meta"><span>定員 <b>5</b> 名</span><span>ベッド3台</span><span>36 m²</span></div>
+            <div class="meta"><span>定員 <b>5</b> 名</span><span>ダブルベッド2台・ソファベッド1台</span><span>36 m²</span></div>
             <div class="cta">
               <a class="btn btn-book" href="https://www.airbnb.jp/rooms/1361139822645478998" target="_blank" rel="noopener">EVT202 をAirbnbで予約 <span class="arrow">→</span></a>
               <a class="btn btn-more" href="rooms/ja/evt202.html">部屋の詳細</a>
@@ -456,7 +461,7 @@
             <h3>ブルーデザインの部屋</h3>
             <div class="rating"><span class="star">★</span><b>4.95</b><span class="n">· レビュー38件</span></div>
             <p class="desc">深いブルーで統一したダイニングが落ち着いた雰囲気をつくります。ご家族や長期滞在に向いた広めの1LDKです。</p>
-            <div class="meta"><span>定員 <b>5</b> 名</span><span>ベッド3台</span><span>36 m²</span></div>
+            <div class="meta"><span>定員 <b>5</b> 名</span><span>ダブルベッド2台・ソファベッド1台</span><span>36 m²</span></div>
             <div class="cta">
               <a class="btn btn-book" href="https://www.airbnb.jp/rooms/1361144424351234078" target="_blank" rel="noopener">EVT301 をAirbnbで予約 <span class="arrow">→</span></a>
               <a class="btn btn-more" href="rooms/ja/evt301.html">部屋の詳細</a>
@@ -471,7 +476,7 @@
             <h3>マリメッコの部屋</h3>
             <div class="rating"><span class="star">★</span><b>4.94</b><span class="n">· レビュー47件</span></div>
             <p class="desc">マリメッコの壁紙が明るい北欧テイストの部屋。3階の静かな一角にあります。</p>
-            <div class="meta"><span>定員 <b>5</b> 名</span><span>ベッド3台</span><span>36 m²</span></div>
+            <div class="meta"><span>定員 <b>5</b> 名</span><span>ダブルベッド2台・ソファベッド1台</span><span>36 m²</span></div>
             <div class="cta">
               <a class="btn btn-book" href="https://www.airbnb.jp/rooms/1361146597284334432" target="_blank" rel="noopener">EVT302 をAirbnbで予約 <span class="arrow">→</span></a>
               <a class="btn btn-more" href="rooms/ja/evt302.html">部屋の詳細</a>

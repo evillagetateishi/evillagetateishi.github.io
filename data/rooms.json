@@ -68,10 +68,26 @@
         "en": "Studio with loft",
         "ja": "ワンルーム＋ロフト"
       },
-      "beds": {
-        "en": "4 beds (2 loft)",
-        "ja": "ベッド4台（うちロフトに2台）"
-      },
+      "bed_details": [
+        {
+          "type": {
+            "en": "Double bed",
+            "ja": "ダブルベッド"
+          },
+          "count": 2
+        },
+        {
+          "type": {
+            "en": "Single bed",
+            "ja": "シングルベッド"
+          },
+          "count": 2,
+          "note": {
+            "en": "in the loft",
+            "ja": "ロフト"
+          }
+        }
+      ],
       "size": "39 m²",
       "desc": {
         "en": "A playful loft reached by a green ladder, a hammock chair, and a ceiling that fills with stars when the lights go out. Kids' favorite.",
@@ -133,10 +149,22 @@
         "en": "1LDK",
         "ja": "1LDK"
       },
-      "beds": {
-        "en": "3 beds",
-        "ja": "ベッド3台"
-      },
+      "bed_details": [
+        {
+          "type": {
+            "en": "Double bed",
+            "ja": "ダブルベッド"
+          },
+          "count": 2
+        },
+        {
+          "type": {
+            "en": "Sofa bed",
+            "ja": "ソファベッド"
+          },
+          "count": 1
+        }
+      ],
       "size": "36 m²",
       "desc": {
         "en": "Dine beneath Japan's famous 12th-century 'frolicking animals' scroll art. A bright, calm 1LDK with a counter-style dining table.",
@@ -196,10 +224,22 @@
         "en": "1LDK",
         "ja": "1LDK"
       },
-      "beds": {
-        "en": "3 beds",
-        "ja": "ベッド3台"
-      },
+      "bed_details": [
+        {
+          "type": {
+            "en": "Double bed",
+            "ja": "ダブルベッド"
+          },
+          "count": 2
+        },
+        {
+          "type": {
+            "en": "Sofa bed",
+            "ja": "ソファベッド"
+          },
+          "count": 1
+        }
+      ],
       "size": "36 m²",
       "desc": {
         "en": "A bright 2nd-floor apartment with botanical wallpaper inspired by museum plant specimens. Great for families, business trips and longer stays.",
@@ -259,10 +299,22 @@
         "en": "1LDK",
         "ja": "1LDK"
       },
-      "beds": {
-        "en": "3 beds",
-        "ja": "ベッド3台"
-      },
+      "bed_details": [
+        {
+          "type": {
+            "en": "Double bed",
+            "ja": "ダブルベッド"
+          },
+          "count": 2
+        },
+        {
+          "type": {
+            "en": "Sofa bed",
+            "ja": "ソファベッド"
+          },
+          "count": 1
+        }
+      ],
       "size": "36 m²",
       "desc": {
         "en": "An artistic deep-blue dining space with a resort-like calm. Spacious 1LDK ideal for families and longer stays.",
@@ -322,10 +374,22 @@
         "en": "1LDK",
         "ja": "1LDK"
       },
-      "beds": {
-        "en": "3 beds",
-        "ja": "ベッド3台"
-      },
+      "bed_details": [
+        {
+          "type": {
+            "en": "Double bed",
+            "ja": "ダブルベッド"
+          },
+          "count": 2
+        },
+        {
+          "type": {
+            "en": "Sofa bed",
+            "ja": "ソファベッド"
+          },
+          "count": 1
+        }
+      ],
       "size": "36 m²",
       "desc": {
         "en": "Bright Nordic interior with cheerful Marimekko wallpaper — warm, cozy and quietly tucked on the 3rd floor.",
