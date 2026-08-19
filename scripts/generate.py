@@ -215,17 +215,19 @@ def rooms_html(rooms, lang):
     for r in rooms:
         code = r["code"]
         detail = ("rooms/%s.html" % code.lower()) if lang == "en" else ("rooms/ja/%s.html" % code.lower())
-        badge = r["badge"][lang]
-        # バッジが無い部屋では行ごと出さない（カード内に空行を残さないため）
-        badge_html = ('            <span class="badge">%s</span>\n' % esc(badge)) if badge else ""
+        # バッジ（「上位5%の宿」等）はAirbnbが与える呼称なので、こちらのサイトでは出さない。
+        # データは rooms.json に残すが、生成物には現れない（validate.py が残存を検査する）。
+        badge_html = ""
         rating = ""
         if r["rating"]:
-            reviews = ""
+            # 評価はAirbnbの数値なので、出典が分かる形でしか出さない。
             if r["reviews"]:
-                reviews = ('<span class="n">· %d reviews</span>' % r["reviews"]) if lang == "en" \
-                    else ('<span class="n">· レビュー%d件</span>' % r["reviews"])
-            rating = '<div class="rating"><span class="star">★</span><b>%s</b>%s</div>' % (
-                r["rating"], reviews)
+                note = ('· %d reviews on Airbnb' % r["reviews"]) if lang == "en" \
+                    else ('· Airbnbレビュー%d件' % r["reviews"])
+            else:
+                note = '· on Airbnb' if lang == "en" else '· Airbnb評価'
+            rating = ('<div class="rating"><span class="star">★</span><b>%s</b>'
+                      '<span class="n">%s</span></div>' % (r["rating"], esc(note)))
         if lang == "en":
             book = "Book %s on Airbnb" % code
             more = "Room details"
