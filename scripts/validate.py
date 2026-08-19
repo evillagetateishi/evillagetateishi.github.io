@@ -112,6 +112,10 @@ def validate_site(doc):
         err("site.base_url", "https:// で始まる URL であるべき")
     if not re.match(r"^\d{4}-\d{2}-\d{2}$", str(site.get("last_updated", ""))):
         err("site.last_updated", "YYYY-MM-DD であるべき")
+    # 評価はAirbnbから写した値なので、いつ時点のものかを持っておく。
+    # 表示するかは別として、鮮度を後から判断できないと直しようがない。
+    if not re.match(r"^\d{4}-\d{2}$", str(site.get("rating_as_of", ""))):
+        err("site.rating_as_of", "YYYY-MM であるべき（評価データの参照時点）")
 
     biz = site.get("business")
     if not check_type("site.business", biz, dict, "オブジェクト"):
@@ -270,6 +274,24 @@ def validate_rooms(doc):
                 err(base + ".license.display", "真偽値であるべき")
 
 
+# 同型の部屋どうし。面積は必ず一致する。片方だけ書き換えたらここで落ちる。
+# 2026-08-19、201/301 と 202/302 の面積が食い違っていた（サイトの値が誤りだった）ため、
+# 同じ取り違えを二度と通さないように機械で縛る。
+SAME_TYPE_PAIRS = (("EVT201", "EVT301"), ("EVT202", "EVT302"))
+
+
+def validate_symmetry(doc):
+    sizes = {r.get("code"): r.get("size")
+             for r in doc.get("rooms", []) if isinstance(r, dict)}
+    for a, b in SAME_TYPE_PAIRS:
+        if a not in sizes or b not in sizes:
+            continue  # 部屋が減った構成でも落とさない
+        if sizes[a] != sizes[b]:
+            err("rooms[%s/%s].size" % (a, b),
+                "同型の部屋なので面積は一致すべき（%s=%r / %s=%r）"
+                % (a, sizes[a], b, sizes[b]))
+
+
 def validate_forbidden(doc):
     for path, text in walk_strings(doc):
         lowered = text.lower()
@@ -386,6 +408,13 @@ def validate_generated(doc):
                     for r in doc.get("rooms", []) if isinstance(r, dict) and r.get("code")}
     bed_by_code = {r["code"]: expected_bed_nodes(r)
                    for r in doc.get("rooms", []) if isinstance(r, dict) and r.get("code")}
+    # Airbnb が与える呼称（「上位5%の宿」等）は自サイトでは出さない方針。
+    # データは rooms.json に残すので、生成物に漏れていないかをここで見る。
+    badge_texts = set()
+    for r in doc.get("rooms", []):
+        badge = r.get("badge") if isinstance(r, dict) else None
+        if isinstance(badge, dict):
+            badge_texts.update(v for v in badge.values() if isinstance(v, str) and v.strip())
 
     for rel, lang, room in pages:
         html = read_page(rel)
@@ -507,6 +536,17 @@ def validate_generated(doc):
                 err(rel, "HotelRoom.bed が rooms.json と一致しない: %s（%r != %r）"
                     % (codes[0], n.get("bed"), expected_bed))
 
+        # --- バッジ文言が残っていないか ---
+        for text in badge_texts:
+            if text in html:
+                err(rel, "Airbnbのバッジ文言が生成物に残っている: %r" % text)
+
+        # --- 評価を出すなら必ず出典（Airbnb）を添える ---
+        for block in re.findall(r'<div class="rating">.*?</div>', html, re.S):
+            if "Airbnb" not in block:
+                err(rel, "評価の表示に出典（Airbnb）が無い: %r"
+                    % re.sub(r"<[^>]+>", "", block).strip()[:40])
+
         # --- 絶対URLの実在確認（自サイト内のみ）---
         for url in set(re.findall(r'"(https://[^"]+)"', raw)):
             p = local_path_of(base, url)
@@ -580,6 +620,7 @@ def main():
         return 1
 
     validate_rooms(doc)
+    validate_symmetry(doc)
     validate_site(doc)
     validate_forbidden(doc)
     if not errors:
