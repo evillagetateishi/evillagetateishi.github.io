@@ -212,8 +212,35 @@ def validate_rooms(doc):
         if not isinstance(rating, (int, float)) or isinstance(rating, bool) or not (0 <= rating <= 5):
             err(base + ".rating", "0〜5 の数値であるべき（実際: %r）" % rating)
 
-        for key in ("name", "layout", "beds", "desc", "badge", "amenities"):
+        for key in ("name", "layout", "desc", "badge", "amenities"):
             check_bilingual(base, room.get(key), key)
+
+        # ベッドは自由文ではなく内訳で持つ。表示文も構造化データもここから作るので、
+        # ここが崩れると両方が一度に崩れる。台数の合計が定員を超えないことも見る。
+        if "beds" in room:
+            err(base + ".beds", "自由文の beds は廃止。bed_details に置き換えること")
+        details = room.get("bed_details")
+        if not isinstance(details, list) or not details:
+            err(base + ".bed_details", "1件以上の配列であるべき")
+        else:
+            total = 0
+            for k, entry in enumerate(details):
+                sub = "%s.bed_details[%d]" % (base, k)
+                if not isinstance(entry, dict):
+                    err(sub, "オブジェクトであるべき")
+                    continue
+                check_bilingual(sub, entry.get("type"), "type")
+                count = entry.get("count")
+                if not isinstance(count, int) or isinstance(count, bool) or not (1 <= count <= 10):
+                    err(sub + ".count", "1〜10 の整数であるべき（実際: %r）" % count)
+                else:
+                    total += count
+                if "note" in entry:
+                    check_bilingual(sub, entry.get("note"), "note")
+            cap = room.get("capacity")
+            if isinstance(cap, int) and not isinstance(cap, bool) and total > cap:
+                err(base + ".bed_details",
+                    "ベッド台数の合計が定員を超えている（%d台 > 定員%d名）" % (total, cap))
 
         photo = room.get("photo")
         if not isinstance(photo, dict):
@@ -331,12 +358,34 @@ def expected_floor_size(size):
             "unitCode": "MTK"}
 
 
+def expected_bed_nodes(room):
+    """rooms.json の bed_details から、生成物に出ているはずの BedDetails を組み立てる。
+
+    生成側（generate.py の bed_nodes）と同じ形を独立に作る。片方だけ変えると落ちる。
+    """
+    details = room.get("bed_details")
+    if not isinstance(details, list):
+        return None
+    out = []
+    for entry in details:
+        if not isinstance(entry, dict):
+            return None
+        name = (entry.get("type") or {}).get("en")
+        count = entry.get("count")
+        if not name or not isinstance(count, int):
+            return None
+        out.append({"@type": "BedDetails", "typeOfBed": name, "numberOfBeds": count})
+    return out or None
+
+
 def validate_generated(doc):
     base = doc["site"]["base_url"]
     rooms, pages = page_list(doc)
     lodging_seen = {}
     size_by_code = {r["code"]: expected_floor_size(r.get("size"))
                     for r in doc.get("rooms", []) if isinstance(r, dict) and r.get("code")}
+    bed_by_code = {r["code"]: expected_bed_nodes(r)
+                   for r in doc.get("rooms", []) if isinstance(r, dict) and r.get("code")}
 
     for rel, lang, room in pages:
         html = read_page(rel)
@@ -451,6 +500,12 @@ def validate_generated(doc):
             elif actual != expected:
                 err(rel, "HotelRoom.floorSize が rooms.json と一致しない: %s（%r != %r）"
                     % (codes[0] if codes else "?", actual, expected))
+
+            # ベッドの内訳も rooms.json と一対一で対応させる。
+            expected_bed = bed_by_code.get(codes[0]) if codes else None
+            if expected_bed is not None and n.get("bed") != expected_bed:
+                err(rel, "HotelRoom.bed が rooms.json と一致しない: %s（%r != %r）"
+                    % (codes[0], n.get("bed"), expected_bed))
 
         # --- 絶対URLの実在確認（自サイト内のみ）---
         for url in set(re.findall(r'"(https://[^"]+)"', raw)):

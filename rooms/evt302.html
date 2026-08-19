@@ -165,7 +165,12 @@
   /* ---------- footer & sticky bar ---------- */
   footer.site{ background:var(--ink); color:#c2c6d4; padding-block:36px 110px; margin-top:14px; }
   @media (min-width:761px){ footer.site{ padding-bottom:36px; } }
-  footer .wrap{ display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:flex-start; }
+  /* ヘッダー用の `.site .wrap`（height:58px・align-items:center）は詳細度(0,2,0)で
+     `footer .wrap`(0,1,1) に勝つため、フッターにも 58px の固定高さが効いてしまっていた。
+     その結果フッター内の法令表示が枠外へはみ出し、モバイルの固定バーに隠れて読めなかった。
+     セレクタを footer.site .wrap(0,2,1) にして勝たせ、高さの固定だけを解く。 */
+  footer.site .wrap{ display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between;
+    align-items:flex-start; height:auto; }
   footer .brand{ color:#fff; }
   footer .brand small{ color:var(--gold); }
   footer .fnote{ font-size:.72rem; color:#9aa0b3; max-width:54ch; line-height:1.7; }
@@ -221,7 +226,7 @@
   .btn-more:hover{ border-color:var(--gold); background:var(--surface); }
   .card .cta{ display:flex; flex-wrap:wrap; gap:8px; }
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"LodgingBusiness","@id":"https://evillagetateishi.github.io/#lodging","name":"e-village TATEISHI","alternateName":["e-VILLAGE TATEISHI","イービレッジ立石"],"url":"https://evillagetateishi.github.io/","image":["https://evillagetateishi.github.io/access-map.jpg"],"address":{"@type":"PostalAddress","addressCountry":"JP","addressRegion":"東京都","addressLocality":"葛飾区","streetAddress":"東立石三丁目"},"numberOfRooms":5,"geo":{"@type":"GeoCoordinates","latitude":35.73547,"longitude":139.84757},"hasMap":"https://maps.app.goo.gl/SifWLT97SxibungQ6"},{"@type":"HotelRoom","@id":"https://evillagetateishi.github.io/rooms/evt302.html#room","name":"EVT302 — Marimekko Room","description":"Bright Nordic interior with cheerful Marimekko wallpaper — warm, cozy and quietly tucked on the 3rd floor.","url":"https://evillagetateishi.github.io/rooms/evt302.html","image":["https://evillagetateishi.github.io/images/rooms/evt302.png"],"floorLevel":"3","occupancy":{"@type":"QuantitativeValue","maxValue":5},"containedInPlace":{"@id":"https://evillagetateishi.github.io/#lodging"},"sameAs":"https://www.airbnb.jp/rooms/1361146597284334432","floorSize":{"@type":"QuantitativeValue","value":36,"unitCode":"MTK"}},{"@type":"BreadcrumbList","@id":"https://evillagetateishi.github.io/rooms/evt302.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"e-village TATEISHI","item":"https://evillagetateishi.github.io/"},{"@type":"ListItem","position":2,"name":"Rooms","item":"https://evillagetateishi.github.io/#rooms"},{"@type":"ListItem","position":3,"name":"EVT302","item":"https://evillagetateishi.github.io/rooms/evt302.html"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"LodgingBusiness","@id":"https://evillagetateishi.github.io/#lodging","name":"e-village TATEISHI","alternateName":["e-VILLAGE TATEISHI","イービレッジ立石"],"url":"https://evillagetateishi.github.io/","image":["https://evillagetateishi.github.io/access-map.jpg"],"address":{"@type":"PostalAddress","addressCountry":"JP","addressRegion":"東京都","addressLocality":"葛飾区","streetAddress":"東立石三丁目"},"numberOfRooms":5,"geo":{"@type":"GeoCoordinates","latitude":35.73547,"longitude":139.84757},"hasMap":"https://maps.app.goo.gl/SifWLT97SxibungQ6"},{"@type":"HotelRoom","@id":"https://evillagetateishi.github.io/rooms/evt302.html#room","name":"EVT302 — Marimekko Room","description":"Bright Nordic interior with cheerful Marimekko wallpaper — warm, cozy and quietly tucked on the 3rd floor.","url":"https://evillagetateishi.github.io/rooms/evt302.html","image":["https://evillagetateishi.github.io/images/rooms/evt302.png"],"floorLevel":"3","occupancy":{"@type":"QuantitativeValue","maxValue":5},"containedInPlace":{"@id":"https://evillagetateishi.github.io/#lodging"},"sameAs":"https://www.airbnb.jp/rooms/1361146597284334432","bed":[{"@type":"BedDetails","typeOfBed":"Double bed","numberOfBeds":2},{"@type":"BedDetails","typeOfBed":"Sofa bed","numberOfBeds":1}],"floorSize":{"@type":"QuantitativeValue","value":36,"unitCode":"MTK"}},{"@type":"BreadcrumbList","@id":"https://evillagetateishi.github.io/rooms/evt302.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"e-village TATEISHI","item":"https://evillagetateishi.github.io/"},{"@type":"ListItem","position":2,"name":"Rooms","item":"https://evillagetateishi.github.io/#rooms"},{"@type":"ListItem","position":3,"name":"EVT302","item":"https://evillagetateishi.github.io/rooms/evt302.html"}]}]}</script>
 
 <!-- Matomo -->
 <script>
@@ -283,7 +288,7 @@
             <dt>Floor</dt><dd>3F</dd>
             <dt>Guests</dt><dd>up to 5</dd>
             <dt>Layout</dt><dd>1LDK</dd>
-            <dt>Beds</dt><dd>3 beds</dd>
+            <dt>Beds</dt><dd>Double bed ×2, Sofa bed ×1</dd>
             <dt>Size</dt><dd>36 m²</dd>
           </dl>
           <h3 class="amen-head">Amenities</h3>

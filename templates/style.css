@@ -143,7 +143,12 @@
   /* ---------- footer & sticky bar ---------- */
   footer.site{ background:var(--ink); color:#c2c6d4; padding-block:36px 110px; margin-top:14px; }
   @media (min-width:761px){ footer.site{ padding-bottom:36px; } }
-  footer .wrap{ display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:flex-start; }
+  /* ヘッダー用の `.site .wrap`（height:58px・align-items:center）は詳細度(0,2,0)で
+     `footer .wrap`(0,1,1) に勝つため、フッターにも 58px の固定高さが効いてしまっていた。
+     その結果フッター内の法令表示が枠外へはみ出し、モバイルの固定バーに隠れて読めなかった。
+     セレクタを footer.site .wrap(0,2,1) にして勝たせ、高さの固定だけを解く。 */
+  footer.site .wrap{ display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between;
+    align-items:flex-start; height:auto; }
   footer .brand{ color:#fff; }
   footer .brand small{ color:var(--gold); }
   footer .fnote{ font-size:.72rem; color:#9aa0b3; max-width:54ch; line-height:1.7; }
