@@ -108,6 +108,29 @@ def active_rooms(data):
     return [r for r in data["rooms"] if r.get("active", False)]
 
 
+# rooms.json の「36 m²」を構造化データの数値へ変換するための形。
+# validate.py の SIZE_RE と同じ形を見ている（片方だけ緩めないこと）。
+SIZE_RE = re.compile(r"^(\d{1,3}(?:\.\d)?) m²$")
+
+
+def floor_size_node(size):
+    """schema.org の floorSize を作る。値が無い・読めないときは None。
+
+    出典の確認できた値だけを構造化データに出す。空文字（面積未確認）の部屋で
+    0 や推定値を出さないために、ここで黙って握りつぶさず None を返して呼び側で落とす。
+    unitCode の MTK は UN/CEFACT の平方メートル。
+    """
+    if not size:
+        return None
+    m = SIZE_RE.match(size)
+    if not m:
+        return None
+    value = float(m.group(1))
+    return {"@type": "QuantitativeValue",
+            "value": int(value) if value.is_integer() else value,
+            "unitCode": "MTK"}
+
+
 def abs_url(base, path):
     return base + "/" + path.lstrip("/")
 
@@ -299,6 +322,9 @@ def room_node(data, room, lang):
         "containedInPlace": {"@id": base + "/#lodging"},
         "sameAs": room["airbnb_url"],
     }
+    floor_size = floor_size_node(room["size"])
+    if floor_size is not None:
+        node["floorSize"] = floor_size
     return node
 
 

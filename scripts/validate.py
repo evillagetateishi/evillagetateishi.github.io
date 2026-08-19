@@ -29,6 +29,10 @@ PHOTO_RE = re.compile(r"^images/rooms/evt\d{3}\.(png|jpg|webp)$")
 AIRBNB_RE = re.compile(r"^https://www\.airbnb\.jp/rooms/\d+$")
 # 許可番号は「7葛保生環令17号」の形。桁数が増える将来も見越して 1〜4 桁を許す。
 LICENSE_RE = re.compile(r"^\d{1,2}葛保生環令\d{1,4}号$")
+# 面積は「36 m²」の形（半角数字・半角スペース・m²）。表記を一本化しておかないと
+# 構造化データの floorSize に数値として渡せない。
+SIZE_RE = re.compile(r"^(\d{1,3}(?:\.\d)?) m²$")
+SIZE_MIN, SIZE_MAX = 10.0, 100.0
 
 FORBIDDEN_WORDS = [
     "password", "passwd", "passcode", "pincode", "pin code",
@@ -179,8 +183,22 @@ def validate_rooms(doc):
             err(base + ".active", "真偽値であるべき")
         if not isinstance(room.get("reviews"), int) or isinstance(room.get("reviews"), bool):
             err(base + ".reviews", "整数であるべき")
-        if not isinstance(room.get("size"), str):
-            err(base + ".size", "文字列であるべき")
+        # 面積は「まだ確認できていない」状態を空文字で表せるようにしておく。
+        # 裏づけの無い数値を置くより、空のままの方が正しい（生成側も空なら出力しない）。
+        # ただし値を入れるなら、表記と値域は機械で縛る。
+        size = room.get("size")
+        if not isinstance(size, str):
+            err(base + ".size", "文字列であるべき（未確定なら空文字）")
+        elif size:
+            m = SIZE_RE.match(size)
+            if not m:
+                err(base + ".size", "「36 m²」の形であるべき（実際: %r）" % size)
+            else:
+                value = float(m.group(1))
+                if not (SIZE_MIN <= value <= SIZE_MAX):
+                    err(base + ".size",
+                        "%g〜%g m² の範囲であるべき（実際: %g）"
+                        % (SIZE_MIN, SIZE_MAX, value))
 
         floor = room.get("floor")
         if not isinstance(floor, int) or isinstance(floor, bool) or not (1 <= floor <= 20):
@@ -296,10 +314,29 @@ def local_path_of(base, url):
     return rel or "index.html"
 
 
+def expected_floor_size(size):
+    """rooms.json の size から、生成物に出ているはずの floorSize を組み立てる。
+
+    生成側（generate.py の floor_size_node）と同じ形を独立に作る。
+    片方を書き換えたらここで食い違いとして落ちる。
+    """
+    if not isinstance(size, str) or not size:
+        return None
+    m = SIZE_RE.match(size)
+    if not m:
+        return None
+    value = float(m.group(1))
+    return {"@type": "QuantitativeValue",
+            "value": int(value) if value.is_integer() else value,
+            "unitCode": "MTK"}
+
+
 def validate_generated(doc):
     base = doc["site"]["base_url"]
     rooms, pages = page_list(doc)
     lodging_seen = {}
+    size_by_code = {r["code"]: expected_floor_size(r.get("size"))
+                    for r in doc.get("rooms", []) if isinstance(r, dict) and r.get("code")}
 
     for rel, lang, room in pages:
         html = read_page(rel)
@@ -400,6 +437,20 @@ def validate_generated(doc):
         for n in hotel_rooms:
             if n.get("containedInPlace", {}).get("@id") != base + "/#lodging":
                 err(rel, "HotelRoom.containedInPlace が施設ノードを指していない")
+
+            # floorSize は rooms.json の size と一対一で対応させる。
+            # 面積が空の部屋に floorSize が出る＝出典の無い数値を公開することなので、
+            # 「出ていないこと」も含めて検査する。
+            codes = re.findall(r"EVT\d{3}", n.get("name", ""))
+            expected = size_by_code.get(codes[0]) if codes else None
+            actual = n.get("floorSize")
+            if expected is None:
+                if actual is not None:
+                    err(rel, "面積が未確定の部屋に floorSize が出ている: %s"
+                        % (codes[0] if codes else "?"))
+            elif actual != expected:
+                err(rel, "HotelRoom.floorSize が rooms.json と一致しない: %s（%r != %r）"
+                    % (codes[0] if codes else "?", actual, expected))
 
         # --- 絶対URLの実在確認（自サイト内のみ）---
         for url in set(re.findall(r'"(https://[^"]+)"', raw)):
